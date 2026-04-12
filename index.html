@@ -7,145 +7,201 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --swk-red: #CE1126;
+            --bg-dark: #121212;
+            --card-dark: #1e1e1e;
+            --text-light: #e0e0e0;
             --swk-yellow: #FCD116;
+            --swk-red: #CE1126;
             --swk-black: #000000;
-            --glass: rgba(255, 255, 255, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --btn-hadir: #28a745;
+            --btn-sebab: #ffc107;
+            --btn-tanpa-sebab: #dc3545;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, var(--swk-black) 0%, var(--swk-red) 50%, var(--swk-yellow) 100%);
-            background-attachment: fixed;
-            color: white;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Header Styles */
+        /* Header & Banner */
         .header-banner {
             width: 100%;
-            height: 150px;
+            height: 180px;
             background: url('https://i.ibb.co/JjrcP5G0/Social-Studies-Google-Classroom-Header-in-Dark-Red-and-Yellow-Illustrative-Style.png') no-repeat center center;
             background-size: cover;
-            border-bottom: 4px solid var(--swk-yellow);
+            border-bottom: 3px solid var(--swk-yellow);
         }
 
+        /* Glassy Logo Placard */
         .logo-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: -50px;
+            margin-top: -60px;
+            z-index: 10;
         }
 
-        .logo-glass {
-            width: 100px;
-            height: 100px;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
+        .glass-placard {
+            width: 110px;
+            height: 110px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-radius: 50%;
             padding: 10px;
-            border: 2px solid white;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 2px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .logo-glass img {
-            width: 100%;
-            height: 100%;
+        .glass-placard img {
+            width: 90%;
+            height: 90%;
             object-fit: contain;
         }
 
-        h1.title {
-            font-size: 1.5rem;
-            margin: 10px 0 5px 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        .portal-title {
             text-align: center;
+            margin-top: 15px;
+        }
+
+        .portal-title h1 {
+            font-size: 1.6rem;
+            margin: 0;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .portal-title h2 {
+            font-size: 1.2rem;
+            margin: 5px 0 0 0;
+            color: var(--swk-yellow);
         }
 
         .container {
             padding: 20px;
             max-width: 600px;
-            margin: auto;
+            margin: 0 auto;
+            flex: 1;
+            width: 100%;
+            box-sizing: border-box;
         }
 
-        /* Card Styles */
+        /* Cards */
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            color: #333;
-            border-radius: 15px;
+            background-color: var(--card-dark);
+            border-radius: 12px;
             padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 1px solid var(--glass-border);
         }
 
-        input, select {
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        input[type="number"], select {
             width: 100%;
             padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            border: 1px solid #444;
             border-radius: 8px;
+            background-color: #2a2a2a;
+            color: #fff;
+            font-size: 1rem;
             box-sizing: border-box;
-            font-size: 16px;
         }
 
-        /* Attendance Buttons */
-        .btn-attendance {
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--swk-yellow);
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        /* Sarawak Colors Login Button */
+        .btn-sarawak {
+            background: linear-gradient(135deg, var(--swk-yellow) 33%, var(--swk-red) 33%, var(--swk-red) 66%, var(--swk-black) 66%);
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            border: 1px solid #fff;
+        }
+        
+        .btn-sarawak:active { opacity: 0.8; }
+
+        .btn-primary { background-color: #007bff; color: white; }
+        .btn-secondary { background-color: #6c757d; color: white; }
+        .btn-danger { background-color: #dc3545; color: white; }
+        .btn-info { background-color: #17a2b8; color: white; }
+        .btn-warning { background-color: #ffc107; color: black; }
+
+        /* Attendance List */
+        .student-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #333;
+        }
+        .student-item:last-child { border-bottom: none; }
+        .student-name { font-weight: 600; font-size: 1rem; margin-bottom: 5px; color: #fff; }
+        .student-meta { font-size: 0.8rem; color: #aaa; margin-bottom: 10px; }
+        
+        .attendance-actions {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 5px;
-            margin-top: 10px;
+            gap: 8px;
         }
 
-        .btn-status {
+        .btn-att {
             padding: 10px 5px;
-            border: none;
-            border-radius: 5px;
-            color: white;
             font-size: 0.8rem;
-            cursor: pointer;
-            font-weight: bold;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            color: white;
+            font-weight: 600;
+            background-color: #333;
         }
 
-        .btn-hadir { background-color: #28a745; }
-        .btn-sebab { background-color: #ffc107; color: black; }
-        .btn-ponteng { background-color: #dc3545; }
+        .btn-att.hadir { background-color: var(--btn-hadir); }
+        .btn-att.sebab { background-color: var(--btn-sebab); color: black; }
+        .btn-att.tanpa-sebab { background-color: var(--btn-tanpa-sebab); }
 
-        .selected-hadir { border: 4px solid #155724; box-shadow: 0 0 10px #28a745; }
-        .selected-sebab { border: 4px solid #856404; box-shadow: 0 0 10px #ffc107; }
-        .selected-ponteng { border: 4px solid #721c24; box-shadow: 0 0 10px #dc3545; }
+        .btn-att.selected {
+            border: 2px solid white;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+        .btn-att:not(.selected) { opacity: 0.6; }
 
-        /* Navigation Buttons */
-        .nav-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        /* Bottom Controls */
+        .bottom-controls {
+            display: flex;
+            flex-direction: column;
             gap: 10px;
             margin-top: 20px;
-        }
-
-        .btn-nav {
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-
-        .btn-back { background: #6c757d; color: white; }
-        .btn-save { background: #007bff; color: white; }
-        .btn-check { background: #17a2b8; color: white; }
-        .btn-exit { background: #343a40; color: white; }
-
-        /* Student List */
-        .student-row {
-            border-bottom: 1px solid #eee;
-            padding: 15px 0;
-        }
-
-        .student-info {
-            font-weight: 600;
-            margin-bottom: 5px;
         }
 
         /* Footer */
@@ -153,55 +209,71 @@
             text-align: center;
             padding: 20px;
             font-size: 0.8rem;
-            color: rgba(255,255,255,0.7);
+            color: #777;
+            background-color: #0a0a0a;
+            border-top: 1px solid #222;
+            margin-top: auto;
         }
 
-        /* Dashboard */
-        .dashboard-item {
-            background: #f8f9fa;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            border-left: 5px solid var(--swk-red);
-        }
-
-        .hidden { display: none; }
-
-        /* Loading Spinner */
-        #loader {
-            display: none;
+        .hidden { display: none !important; }
+        
+        /* Dashboard Loader */
+        .loader {
             text-align: center;
             padding: 20px;
+            color: var(--swk-yellow);
+            font-weight: bold;
+        }
+
+        /* Record Item styling */
+        .record-item {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--swk-red);
+        }
+        .record-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .record-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
     <div class="header-banner"></div>
-
     <div class="logo-container">
-        <div class="logo-glass">
+        <div class="glass-placard">
             <img src="https://i.ibb.co/VYSKMXf1/Logo-Selirik.png" alt="Logo Sekolah">
         </div>
-        <h1 class="title">PORTAL KEHADIRAN SEEP<br>2026</h1>
+        <div class="portal-title">
+            <h1>PORTAL KEHADIRAN SEEP</h1>
+            <h2>Tahun 2026</h2>
+        </div>
     </div>
 
     <div class="container">
-        
         <div id="section-login" class="card">
-            <h3 style="text-align:center">Log Masuk Guru</h3>
-            <label>No. Kad Pengenalan:</label>
-            <input type="number" id="teacher-ic" placeholder="Contoh: 80010113xxxx" onkeypress="if(event.key === 'Enter') login()">
-            <button class="btn-nav btn-save" style="width:100%" onclick="login()">SEMAK</button>
+            <h3 style="text-align: center; margin-top:0;">Log Masuk Guru</h3>
+            <label for="ic-input">No. Kad Pengenalan</label>
+            <input type="number" id="ic-input" placeholder="Masukkan IC tanpa sempang (cth: 80010113xxxx)" onkeypress="handleLoginEnter(event)">
+            <button class="btn btn-sarawak" onclick="login()">LOG MASUK</button>
         </div>
 
-        <div id="section-select" class="card hidden">
-            <h3>Maklumat Kelas</h3>
-            <p id="display-teacher-name" style="font-weight:bold"></p>
+        <div id="section-selection" class="card hidden">
+            <h3 style="margin-top:0; color:var(--swk-yellow);">Maklumat Sesi</h3>
+            <p id="teacher-name-display" style="font-weight:bold;"></p>
             
-            <label>Pilih Tingkatan:</label>
-            <select id="select-form" onchange="updateSubjects()">
-                <option value="">-- Pilih --</option>
+            <label for="select-form">Pilih Tingkatan</label>
+            <select id="select-form" onchange="updateSubjekList()">
+                <option value="">-- Pilih Tingkatan --</option>
                 <option value="1">Tingkatan 1</option>
                 <option value="2">Tingkatan 2</option>
                 <option value="3">Tingkatan 3</option>
@@ -209,12 +281,12 @@
                 <option value="5">Tingkatan 5</option>
             </select>
 
-            <label>Pilih Subjek/Kelas:</label>
+            <label for="select-subject">Pilih Subjek / Kelas</label>
             <select id="select-subject">
                 <option value="">-- Sila Pilih Tingkatan Dahulu --</option>
             </select>
 
-            <label>Pilih Sesi:</label>
+            <label for="select-session">Pilih Sesi</label>
             <select id="select-session">
                 <script>
                     for(let i=1; i<=18; i++) {
@@ -223,34 +295,38 @@
                 </script>
             </select>
 
-            <button class="btn-nav btn-save" style="width:100%" onclick="loadStudents()">MULA TANDA KEHADIRAN</button>
-            <button class="btn-nav btn-exit" style="width:100%; margin-top:10px" onclick="logout()">KELUAR</button>
+            <button class="btn btn-primary" style="margin-top: 10px;" onclick="loadStudents()">MULA KEMASUKAN</button>
+            <button class="btn btn-secondary" style="margin-top: 10px;" onclick="showSection('section-login')">KEMBALI</button>
         </div>
 
         <div id="section-attendance" class="hidden">
-            <div id="loader">Memuatkan data pelajar...</div>
-            <div id="student-list" class="card">
-                </div>
+            <div id="loader" class="loader hidden">Memuatkan Data Pelajar...</div>
+            <div class="card" id="student-list-container">
+                <h3 style="margin-top:0; border-bottom: 1px solid #444; padding-bottom: 10px;" id="attendance-title">Senarai Pelajar</h3>
+                <div id="student-list"></div>
+            </div>
 
-            <div class="nav-buttons">
-                <button class="btn-nav btn-back" onclick="showSection('section-select')">KEMBALI</button>
-                <button class="btn-nav btn-save" onclick="saveAndSubmit()">SIMPAN & HANTAR</button>
-                <button class="btn-nav btn-check" onclick="showDashboard()">SEMAK REKOD</button>
-                <button class="btn-nav btn-exit" onclick="logout()">KELUAR</button>
+            <input type="text" id="keyboard-trap" style="opacity:0; position:absolute; z-index:-1;" onkeyup="handleEnterSkip(event)">
+
+            <div class="bottom-controls">
+                <button class="btn btn-secondary" onclick="showSection('section-selection')">Kembali</button>
+                <button class="btn btn-primary" onclick="simpanDanHantar()">Simpan & Hantar</button>
+                <button class="btn btn-info" onclick="bukaDashboard()">Semak Rekod</button>
+                <button class="btn btn-danger" onclick="logout()">Keluar</button>
             </div>
         </div>
 
         <div id="section-dashboard" class="hidden">
             <div class="card">
-                <h3>Dashboard Semakan</h3>
-                <div id="dashboard-content"></div>
+                <h3 style="margin-top:0; color:var(--swk-yellow);">Dashboard Semakan Rekod</h3>
+                <div id="dashboard-list">
+                    </div>
             </div>
-            <div class="nav-buttons">
-                <button class="btn-nav btn-back" onclick="showSection('section-attendance')">KEMBALI</button>
-                <button class="btn-nav btn-exit" onclick="logout()">KELUAR</button>
+            <div class="bottom-controls">
+                <button class="btn btn-secondary" onclick="showSection('section-attendance')">Kembali</button>
+                <button class="btn btn-danger" onclick="logout()">Keluar</button>
             </div>
         </div>
-
     </div>
 
     <footer>
@@ -258,8 +334,8 @@
     </footer>
 
     <script>
-        // DATA GURU
-        const teacherData = {
+        // Pangkalan Data Guru Hardcoded
+        const teachersData = {
             "751207135568": { name: "TIONG SIEW HOON", subjects: ["MATEMATIK 5 DIAMOND"] },
             "850805135684": { name: "NATALIE DAMIE ANAK JACOB ENGGAH", subjects: ["ENGLISH 4 RUBY", "ENGLISH 5 DIAMOND"] },
             "800530125085": { name: "ARNOLD JUNIOR AUGUSTINE", subjects: ["ENGLISH 4 AMETHYST", "ENGLISH 5 AMETHYST"] },
@@ -268,7 +344,7 @@
             "980627135299": { name: "DARREN GILBERT ANAK KOH", subjects: ["ENGLISH 3 RUBY", "ENGLISH 5 SAPPHIRE"] },
             "860805526983": { name: "GRAY ANAK JOWIM@JOWIN", subjects: ["SEJARAH 4 DIAMOND", "SEJARAH 5 AMETHYST"] },
             "911129136097": { name: "AQKMAL HAZIM BIN MUD", subjects: ["SEJARAH 4 RUBY", "SEJARAH 5 DIAMOND"] },
-            "871226525496": { name: "KAREN MAWAS ANAK ARAH", subjects: ["SEJARAH 4 AMETHYST", "5 EMERALD"] },
+            "871226525496": { name: "KAREN MAWAS ANAK ARAH", subjects: ["SEJARAH 4 AMETHYST", "5 EMERALD"] }, /* Note: "5 EMERALD" as requested */
             "900620137707": { name: "YONG KASI SIONG", subjects: ["SEJARAH 5 RUBY"] },
             "800718135867": { name: "KONG CHUNG SHING", subjects: ["SAINS 4 DIAMOND"] },
             "861122135080": { name: "ALEXANRA ANAK ANDREW KANA", subjects: ["ADDITIONAL MATHEMATICS 4 JADEITE", "MATEMATIK 5 JADEITE", "MATEMATIK 5 AMETYST"] },
@@ -293,19 +369,19 @@
             "960820126054": { name: "BELLA ALFEYANA BOBBY", subjects: ["ENGLISH 2 RUBY"] },
             "960707136410": { name: "CHRISTINA GADING ANAK MERING", subjects: ["ENGLISH 1 DIAMOND"] },
             "921011135725": { name: "FRANKLIN ANAK BALA", subjects: ["SAINS 2 AMETHYST"] },
-            "961202135572": { name: "MATEMATIK 1 DIAMOND", subjects: ["MATEMATIK 1 DIAMOND", "MATEMATIK 2 RUBY"] },
+            "961202135572": { name: "MELISSA BINTI MANDE", subjects: ["MATEMATIK 1 DIAMOND", "MATEMATIK 2 RUBY"] },
             "940129136671": { name: "MOHD FARIDH REZZA BIN MOHD SABLI", subjects: ["BAHASA INGGERIS 2 AMETHYST"] },
             "940708126945": { name: "MOHD. JAIEROL BIN JUMIN", subjects: ["MATEMATIK 1 RUBY", "MATEMATIK 2 AMETHYST"] },
             "861027526673": { name: "NELSON ANAK GEORGE", subjects: ["SAINS 2 DIAMOND"] },
             "990507135656": { name: "NORSYAZWANI BINT SALAINI", subjects: ["SAINS 1 DIAMOND"] },
             "971103085054": { name: "NUR ATHIRAH BINTI MD NOR", subjects: ["MATEMATIK 4 AMETHYST"] },
             "970927036787": { name: "MUHAMMAD BADRUL AMIN BIN AHMAD FUAD", subjects: ["MATHEMATICS 1 AMETHYST"] },
-            "00072130268": { name: "NUR ELLYSHA BINTI NUR MUSWARIE", subjects: ["SAINS 1 RUBY", "SAINS 2 RUBY"] },
+            "00072130268":  { name: "NUR ELLYSHA BINTI NUR MUSWARIE", subjects: ["SAINS 1 RUBY", "SAINS 2 RUBY"] }, /* Missing leading 0 handled dynamically if parsed as string */
             "910204135752": { name: "THANNIE BINTI BETTY", subjects: ["MATEMATIK 2 DIAMOND"] },
             "000627130838": { name: "VANESSA ANAK PUTEH", subjects: ["ENGLISH 1 RUBY"] }
         };
 
-        const sheetUrls = {
+        const csvLinks = {
             "1": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQCbmoYUWEIQIYGLveu-q4TOsYjzT_1mq6w2-m_m0Q5e5G2Oy0G9dXVP3yxNHjY4qjZQ3LIKx9j2gvl/pub?gid=154786193&single=true&output=csv",
             "2": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSi-4btpKwvSPukQGKHP0hKMHxxPfhbWgIcJGHdD2HjsvIjXuuFzAAuNL59R59sbMnocvfOv0KGuoNB/pub?output=csv",
             "3": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpl0emnND3D0WSm0n92Qj3rjVtI7L36FHOSZXhOBulRJslOGtD8yIgOw74hZfljlQ2HMwxf2jogl1-/pub?output=csv",
@@ -313,7 +389,7 @@
             "5": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQPx_Vym9O7mQejaGpkZjLEeTtu5sGxB36NRnPhc88YPAA0JyW64m5gg8XdEPi67QQul-jkUpv-Vczj/pub?output=csv"
         };
 
-        const scriptUrls = {
+        const appScriptLinks = {
             "1": "https://script.google.com/macros/s/AKfycbzUyn-n9yIeB2v2M4PbVm_2IkPmLcLaIEvXF09bwtKwK48ocsANb9KfPj19tfpOUHQ/exec",
             "2": "https://script.google.com/macros/s/AKfycbw6KASc9M-Ot2BUYRSYUQFJaMzejMegL5vSJK-7X8jhQw8t_02ZSMXq_slGIGsQGoo_/exec",
             "3": "https://script.google.com/macros/s/AKfycbypI-2OLsFCSflvSwmdKFybCJkZLPsbDo0o47imBVcVQJLTCL1UBBjrRUjBrGwkgw6R/exec",
@@ -322,199 +398,327 @@
         };
 
         let currentTeacher = null;
-        let studentAttendanceData = {};
+        let currentStudents = [];
+        let currentAttendance = {};
+        let currentRecordId = null; // For updating existing local record
 
-        function showSection(id) {
-            document.querySelectorAll('.container > div').forEach(div => div.classList.add('hidden'));
-            document.getElementById(id).classList.remove('hidden');
+        function showSection(sectionId) {
+            document.getElementById('section-login').classList.add('hidden');
+            document.getElementById('section-selection').classList.add('hidden');
+            document.getElementById('section-attendance').classList.add('hidden');
+            document.getElementById('section-dashboard').classList.add('hidden');
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        function handleLoginEnter(e) {
+            if (e.key === 'Enter') login();
         }
 
         function login() {
-            const ic = document.getElementById('teacher-ic').value;
-            if (teacherData[ic]) {
-                currentTeacher = teacherData[ic];
-                document.getElementById('display-teacher-name').innerText = `GURU: ${currentTeacher.name}`;
-                showSection('section-select');
+            let ic = document.getElementById('ic-input').value.trim();
+            // Pad with leading zero if missed for specific ICs
+            if(ic === "72130268") ic = "00072130268"; 
+            if(ic === "627130838") ic = "000627130838";
+
+            if (teachersData[ic]) {
+                currentTeacher = teachersData[ic];
+                document.getElementById('teacher-name-display').innerText = `Selamat Datang, Cikgu ${currentTeacher.name}`;
+                showSection('section-selection');
             } else {
-                alert("ID tidak ditemui. Sila hubungi pentadbir.");
+                alert("Nombor Kad Pengenalan tidak ditemui dalam sistem.");
             }
         }
 
-        function updateSubjects() {
-            const subjectSelect = document.getElementById('select-subject');
-            subjectSelect.innerHTML = '<option value="">-- Pilih Subjek --</option>';
-            currentTeacher.subjects.forEach(sub => {
-                const opt = document.createElement('option');
-                opt.value = sub;
-                opt.text = sub;
-                subjectSelect.add(opt);
-            });
+        function updateSubjekList() {
+            let formSelect = document.getElementById('select-form').value;
+            let subjectSelect = document.getElementById('select-subject');
+            subjectSelect.innerHTML = '<option value="">-- Pilih Subjek / Kelas --</option>';
+
+            if (currentTeacher && formSelect) {
+                // Filter subjects roughly by form number if needed, or just show all allowed
+                currentTeacher.subjects.forEach(sub => {
+                    let option = document.createElement('option');
+                    option.value = sub;
+                    option.text = sub;
+                    subjectSelect.appendChild(option);
+                });
+            }
         }
 
         async function loadStudents() {
-            const form = document.getElementById('select-form').value;
-            const subject = document.getElementById('select-subject').value;
-            
-            if (!form || !subject) {
-                alert("Sila pilih Tingkatan dan Subjek.");
+            let form = document.getElementById('select-form').value;
+            let subject = document.getElementById('select-subject').value;
+            let session = document.getElementById('select-session').value;
+
+            if (!form || !subject || !session) {
+                alert("Sila lengkapkan pilihan Tingkatan, Subjek dan Sesi.");
                 return;
             }
 
             showSection('section-attendance');
-            const listDiv = document.getElementById('student-list');
-            const loader = document.getElementById('loader');
-            
-            listDiv.innerHTML = "";
-            loader.style.display = "block";
+            document.getElementById('student-list').innerHTML = '';
+            document.getElementById('loader').classList.remove('hidden');
+            document.getElementById('attendance-title').innerText = `${subject} - Sesi ${session}`;
 
             try {
-                const response = await fetch(sheetUrls[form]);
-                const data = await response.text();
-                const rows = data.split('\n').slice(1); // Buang header
+                let response = await fetch(csvLinks[form]);
+                let csvText = await response.text();
+                
+                // Parse CSV
+                let rows = csvText.split('\n');
+                currentStudents = [];
+                currentAttendance = {};
+                currentRecordId = null; // Reset
+                
+                for (let i = 1; i < rows.length; i++) { // skip header
+                    let cols = rows[i].split(',');
+                    if (cols.length >= 4) {
+                        let name = cols[0].trim();
+                        let className = cols[1].trim();
+                        let gender = cols[2].trim();
+                        let groupSubject = cols[3].trim();
 
-                let count = 0;
-                rows.forEach((row, index) => {
-                    const cols = row.split(',');
-                    if (cols.length > 3) {
-                        const sName = cols[0].trim();
-                        const sClass = cols[1].trim();
-                        const sGender = cols[2].trim();
-                        const sGroup = cols[3].trim();
-
-                        // Filter ikut subjek/kumpulan yang dipilih guru
-                        if (subject.toUpperCase().includes(sGroup.toUpperCase()) || sGroup.toUpperCase() === subject.toUpperCase()) {
-                            count++;
-                            const sId = `std-${index}`;
-                            listDiv.innerHTML += `
-                                <div class="student-row" id="row-${sId}" tabindex="0" onkeypress="handleEnter(event, ${index})">
-                                    <div class="student-info">${count}. ${sName} (${sClass})</div>
-                                    <div class="btn-attendance">
-                                        <button class="btn-status btn-hadir" id="btn-h-${sId}" onclick="mark('${sId}', 'Hadir', '${sName}')">Hadir</button>
-                                        <button class="btn-status btn-sebab" id="btn-s-${sId}" onclick="mark('${sId}', 'Bersebab', '${sName}')">Bersebab</button>
-                                        <button class="btn-status btn-ponteng" id="btn-p-${sId}" onclick="mark('${sId}', 'Tanpa Sebab', '${sName}')">Tanpa Sebab</button>
-                                    </div>
-                                </div>
-                            `;
-                            studentAttendanceData[sId] = { name: sName, status: "", class: sClass };
+                        // Match student group with teacher selected subject
+                        if (groupSubject.toLowerCase() === subject.toLowerCase() || subject.toLowerCase().includes(groupSubject.toLowerCase())) {
+                            currentStudents.push({ name, className, gender, id: i });
+                            currentAttendance[i] = ""; // Default empty
                         }
                     }
-                });
-
-                if (count === 0) listDiv.innerHTML = "<p>Tiada pelajar ditemui untuk subjek ini.</p>";
-
-            } catch (error) {
-                alert("Gagal memuatkan data. Sila pastikan sambungan internet aktif.");
-            } finally {
-                loader.style.display = "none";
-            }
-        }
-
-        function mark(id, status, name) {
-            // Reset colors
-            document.getElementById(`btn-h-${id}`).classList.remove('selected-hadir');
-            document.getElementById(`btn-s-${id}`).classList.remove('selected-sebab');
-            document.getElementById(`btn-p-${id}`).classList.remove('selected-ponteng');
-
-            // Set selected color
-            if (status === 'Hadir') document.getElementById(`btn-h-${id}`).classList.add('selected-hadir');
-            if (status === 'Bersebab') document.getElementById(`btn-s-${id}`).classList.add('selected-sebab');
-            if (status === 'Tanpa Sebab') document.getElementById(`btn-p-${id}`).classList.add('selected-ponteng');
-
-            studentAttendanceData[id].status = status;
-        }
-
-        function handleEnter(event, index) {
-            if (event.key === "Enter") {
-                const rows = document.querySelectorAll('.student-row');
-                for (let i = 0; i < rows.length; i++) {
-                    if (rows[i] === event.target && i + 1 < rows.length) {
-                        rows[i+1].focus();
-                        break;
-                    }
                 }
+
+                renderStudentList();
+            } catch (error) {
+                alert("Ralat memuat turun data pelajar. Sila pastikan anda mempunyai capaian internet.");
+            } finally {
+                document.getElementById('loader').classList.add('hidden');
+                document.getElementById('keyboard-trap').focus();
             }
         }
 
-        async function saveAndSubmit() {
-            const form = document.getElementById('select-form').value;
-            const session = document.getElementById('select-session').value;
-            const date = new Date().toLocaleDateString();
+        function renderStudentList() {
+            let container = document.getElementById('student-list');
+            container.innerHTML = '';
 
-            // Simpan ke LocalStorage
-            const record = {
-                teacher: currentTeacher.name,
-                subject: document.getElementById('select-subject').value,
-                session: session,
-                date: date,
-                data: studentAttendanceData
-            };
-
-            let localRecords = JSON.parse(localStorage.getItem('seep_records') || "[]");
-            localRecords.push(record);
-            localStorage.setItem('seep_records', JSON.stringify(localRecords));
-
-            // Hantar ke Google Sheet
-            alert("Data sedang dihantar ke Google Sheet...");
-            
-            // Logik penghantaran API (Simulasi)
-            // Dalam realiti, anda perlukan fetch POST ke scriptUrls[form]
-            console.log("Menghantar data ke:", scriptUrls[form]);
-
-            alert("Kehadiran berjaya disimpan dan dihantar!");
-            showDashboard();
-        }
-
-        function showDashboard() {
-            showSection('section-dashboard');
-            const content = document.getElementById('dashboard-content');
-            const records = JSON.parse(localStorage.getItem('seep_records') || "[]");
-
-            if (records.length === 0) {
-                content.innerHTML = "<p>Tiada rekod disimpan.</p>";
+            if (currentStudents.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#ffc107;">Tiada pelajar ditemui untuk subjek ini dalam Master Sheet.</p>';
                 return;
             }
 
-            content.innerHTML = "";
-            records.forEach((rec, idx) => {
-                let statusList = "";
-                for (let id in rec.data) {
-                    if(rec.data[id].status) {
-                        statusList += `<li>${rec.data[id].name}: <b>${rec.data[id].status}</b></li>`;
-                    }
-                }
-
-                content.innerHTML += `
-                    <div class="dashboard-item" id="rec-${idx}">
-                        <strong>Sesi ${rec.session} - ${rec.date}</strong><br>
-                        <span>${rec.subject}</span>
-                        <ul style="font-size:0.8rem">${statusList}</ul>
-                        <button onclick="deleteRecord(${idx})" style="background:red; color:white; border:none; padding:5px; border-radius:4px">Hapus</button>
-                        <button onclick="updateRecord(${idx})" style="background:orange; color:white; border:none; padding:5px; border-radius:4px">Kemaskini</button>
+            currentStudents.forEach((std, index) => {
+                let div = document.createElement('div');
+                div.className = 'student-item';
+                div.innerHTML = `
+                    <div class="student-name">${index + 1}. ${std.name}</div>
+                    <div class="student-meta">${std.className} | ${std.gender}</div>
+                    <div class="attendance-actions">
+                        <button class="btn-att hadir ${currentAttendance[std.id] === 'Hadir' ? 'selected' : ''}" onclick="markAtt(${std.id}, 'Hadir')">Hadir</button>
+                        <button class="btn-att sebab ${currentAttendance[std.id] === 'Tidak Hadir Bersebab' ? 'selected' : ''}" onclick="markAtt(${std.id}, 'Tidak Hadir Bersebab')">Bersebab</button>
+                        <button class="btn-att tanpa-sebab ${currentAttendance[std.id] === 'Tidak Hadir Tanpa Sebab' ? 'selected' : ''}" onclick="markAtt(${std.id}, 'Tidak Hadir Tanpa Sebab')">Tanpa Sebab</button>
                     </div>
                 `;
+                container.appendChild(div);
             });
         }
 
-        function deleteRecord(idx) {
-            if(confirm("Hapus rekod ini dari peranti dan server?")) {
-                let records = JSON.parse(localStorage.getItem('seep_records'));
-                records.splice(idx, 1);
-                localStorage.setItem('seep_records', JSON.stringify(records));
-                showDashboard();
+        function markAtt(studentId, status) {
+            currentAttendance[studentId] = status;
+            renderStudentList();
+            
+            // Auto focus on hidden input for Enter key trap
+            document.getElementById('keyboard-trap').focus();
+        }
+
+        // Feature: Tekan Enter untuk lompat
+        function handleEnterSkip(e) {
+            if (e.key === 'Enter') {
+                // Find next unmarked student and scroll to them (simulate jumping)
+                let foundUnmarked = false;
+                for (let std of currentStudents) {
+                    if (!currentAttendance[std.id]) {
+                        // Mark default as hadir if skipped? No, instruction says "lompat ke nama pelajar seterusnya"
+                        let elem = document.querySelectorAll('.student-item')[currentStudents.indexOf(std)];
+                        if(elem) {
+                            elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            // Light up the element briefly
+                            elem.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+                            setTimeout(() => { elem.style.backgroundColor = "transparent"; }, 500);
+                        }
+                        foundUnmarked = true;
+                        break;
+                    }
+                }
+                if(!foundUnmarked) {
+                    alert("Semua pelajar telah ditanda.");
+                }
             }
         }
 
-        function updateRecord(idx) {
-            alert("Sila buat pembetulan pada senarai kehadiran dan hantar semula.");
-            showSection('section-attendance');
+        async function simpanDanHantar() {
+            let form = document.getElementById('select-form').value;
+            let subject = document.getElementById('select-subject').value;
+            let session = document.getElementById('select-session').value;
+            
+            // Validation
+            let uncompleted = currentStudents.filter(s => !currentAttendance[s.id]);
+            if (uncompleted.length > 0) {
+                if(!confirm(`Terdapat ${uncompleted.length} pelajar belum ditanda kehadiran. Adakah anda pasti ingin simpan?`)) {
+                    return;
+                }
+            }
+
+            let dateStr = new Date().toLocaleString('ms-MY');
+            let payloadData = currentStudents.map(std => ({
+                name: std.name,
+                className: std.className,
+                status: currentAttendance[std.id] || "Tiada Rekod"
+            }));
+
+            let record = {
+                id: currentRecordId || Date.now().toString(),
+                teacher: currentTeacher.name,
+                form: form,
+                subject: subject,
+                session: session,
+                date: dateStr,
+                data: payloadData
+            };
+
+            // 1. Simpan dalam LocalStorage
+            let records = JSON.parse(localStorage.getItem('seep_records') || '[]');
+            if (currentRecordId) {
+                let idx = records.findIndex(r => r.id === currentRecordId);
+                if (idx > -1) records[idx] = record;
+            } else {
+                records.push(record);
+            }
+            localStorage.setItem('seep_records', JSON.stringify(records));
+
+            // 2. Hantar ke Google App Script (GS)
+            let appScriptUrl = appScriptLinks[form];
+            alert("Data sedang diproses untuk dihantar ke pelayan. Ia mungkin mengambil sedikit masa.");
+            
+            try {
+                // Konsep API Call ke App Script. Menggunakan POST no-cors.
+                // Parameter 'action' boleh ditentukan di App Script untuk Update/Insert
+                await fetch(appScriptUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'update_attendance',
+                        session: session,
+                        subject: subject,
+                        records: payloadData
+                    })
+                });
+                alert("Data BERJAYA disimpan di peranti dan dihantar ke pangkalan data Google Sheet!");
+                bukaDashboard();
+            } catch (err) {
+                alert("Data disimpan di peranti (LocalStorage), tetapi GAGAL dihantar ke Google Sheet. Sila cuba lagi apabila sambungan internet stabil.");
+                bukaDashboard();
+            }
+        }
+
+        function bukaDashboard() {
+            showSection('section-dashboard');
+            let container = document.getElementById('dashboard-list');
+            container.innerHTML = '';
+
+            let records = JSON.parse(localStorage.getItem('seep_records') || '[]');
+            let myRecords = records.filter(r => currentTeacher && r.teacher === currentTeacher.name);
+
+            if (myRecords.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#aaa;">Tiada rekod kehadiran dijumpai untuk anda.</p>';
+                return;
+            }
+
+            // Susun terbalik (terkini di atas)
+            myRecords.reverse().forEach(rec => {
+                let div = document.createElement('div');
+                div.className = 'record-item';
+                
+                let stats = { "Hadir": 0, "Tidak Hadir Bersebab": 0, "Tidak Hadir Tanpa Sebab": 0, "Tiada Rekod": 0 };
+                rec.data.forEach(d => { if(stats[d.status]!==undefined) stats[d.status]++; });
+
+                div.innerHTML = `
+                    <div class="record-header">
+                        <span>Sesi ${rec.session} - ${rec.subject}</span>
+                        <span style="font-size:0.8rem; color:#aaa;">${rec.date}</span>
+                    </div>
+                    <div style="font-size: 0.9rem; margin-bottom:10px;">
+                        Hadir: <span style="color:var(--btn-hadir)">${stats["Hadir"]}</span> | 
+                        Bersebab: <span style="color:var(--btn-sebab)">${stats["Tidak Hadir Bersebab"]}</span> | 
+                        Tanpa Sebab: <span style="color:var(--btn-tanpa-sebab)">${stats["Tidak Hadir Tanpa Sebab"]}</span>
+                    </div>
+                    <div class="record-actions">
+                        <button class="btn btn-warning" onclick="kemaskiniRekod('${rec.id}')">Kemaskini</button>
+                        <button class="btn btn-danger" onclick="hapusRekod('${rec.id}', '${rec.form}', '${rec.session}', '${rec.subject}')">Hapus</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function kemaskiniRekod(recordId) {
+            let records = JSON.parse(localStorage.getItem('seep_records') || '[]');
+            let rec = records.find(r => r.id === recordId);
+            if(rec) {
+                // Set selections
+                document.getElementById('select-form').value = rec.form;
+                updateSubjekList();
+                setTimeout(() => {
+                    document.getElementById('select-subject').value = rec.subject;
+                    document.getElementById('select-session').value = rec.session;
+                    
+                    // Simulate loading students but bypass API call to reuse saved state
+                    currentStudents = rec.data.map((d, index) => ({ name: d.name, className: d.className, id: index }));
+                    currentAttendance = {};
+                    rec.data.forEach((d, index) => { currentAttendance[index] = d.status === "Tiada Rekod" ? "" : d.status; });
+                    currentRecordId = rec.id;
+                    
+                    showSection('section-attendance');
+                    document.getElementById('attendance-title').innerText = `${rec.subject} - Sesi ${rec.session} (KEMASKINI)`;
+                    renderStudentList();
+                }, 100);
+            }
+        }
+
+        async function hapusRekod(recordId, form, session, subject) {
+            if(confirm("Anda pasti ingin memadam rekod ini dari peranti dan Google Sheet?")) {
+                // 1. Hapus dari LocalStorage
+                let records = JSON.parse(localStorage.getItem('seep_records') || '[]');
+                records = records.filter(r => r.id !== recordId);
+                localStorage.setItem('seep_records', JSON.stringify(records));
+
+                // 2. Hantar arahan hapus ke Google Sheet
+                let appScriptUrl = appScriptLinks[form];
+                try {
+                    await fetch(appScriptUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            action: 'delete_attendance',
+                            session: session,
+                            subject: subject
+                        })
+                    });
+                    alert("Rekod berjaya dipadam!");
+                } catch (err) {
+                    alert("Rekod dipadam di peranti, tetapi terdapat ralat memadam di server.");
+                }
+                
+                bukaDashboard();
+            }
         }
 
         function logout() {
-            if(confirm("Adakah anda ingin keluar?")) {
-                location.reload();
+            if(confirm("Anda pasti ingin keluar? Rekod anda tetap akan tersimpan di dalam peranti ini.")) {
+                currentTeacher = null;
+                document.getElementById('ic-input').value = '';
+                showSection('section-login');
             }
         }
-
     </script>
 </body>
 </html>
