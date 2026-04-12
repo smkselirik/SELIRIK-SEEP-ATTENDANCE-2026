@@ -300,7 +300,7 @@
             return match ? match[0] : null;
         }
 
-        async function loadStudents() {
+       async function loadStudents() {
             let subject = document.getElementById('select-subject').value;
             let session = document.getElementById('select-session').value;
             let form = getFormFromSubject(subject);
@@ -320,9 +320,17 @@
                 currentAttendance = {};
 
                 for(let i=1; i<rows.length; i++) {
+                    // Pecahkan data CSV. Mengandaikan: 
+                    // cols[0]=Nama, cols[1]=Kelas, cols[2]=Jantina, cols[3]=Subjek
                     let cols = rows[i].split(',');
+                    
                     if(cols.length >= 4 && (subject.includes(cols[3].trim()) || cols[3].trim().includes(subject))) {
-                        currentStudents.push({ name: cols[0].trim(), className: cols[1].trim(), id: i });
+                        currentStudents.push({ 
+                            name: cols[0].trim(), 
+                            className: cols[1].trim(), 
+                            gender: cols[2].trim(), // Tambahan data jantina
+                            id: i 
+                        });
                         currentAttendance[i] = "";
                     }
                 }
@@ -337,8 +345,16 @@
             currentStudents.forEach((s, idx) => {
                 let div = document.createElement('div');
                 div.className = 'student-item';
+                
+                // Gunakan warna berbeza sikit untuk jantina (Pilihan)
+                let genderColor = s.gender.toLowerCase().startsWith('p') ? '#ff99cc' : '#99ccff'; // Merah jambu untuk Perempuan, Biru untuk Lelaki
+
                 div.innerHTML = `
-                    <div class="student-name">${idx+1}. ${s.name}</div>
+                    <div class="student-name" style="margin-bottom: 2px;">${idx+1}. ${s.name}</div>
+                    <div style="font-size: 0.75rem; color: #aaa; margin-bottom: 10px;">
+                        <span style="background: #333; padding: 2px 6px; border-radius: 4px;">${s.className}</span> 
+                        <span style="background: #333; padding: 2px 6px; border-radius: 4px; color: ${genderColor};">${s.gender}</span>
+                    </div>
                     <div class="attendance-actions">
                         <button class="btn-att hadir ${currentAttendance[s.id]==='Hadir'?'selected':''}" onclick="mark(${s.id},'Hadir')">Hadir</button>
                         <button class="btn-att sebab ${currentAttendance[s.id]==='Tidak Hadir Bersebab'?'selected':''}" onclick="mark(${s.id},'Tidak Hadir Bersebab')">Bersebab</button>
