@@ -29,30 +29,35 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            padding-bottom: 80px; /* Ruang untuk butang kekal di bawah */
         }
 
-       /* Header & Banner */
+        /* Header & Banner - Menggunakan img supaya tidak terpotong */
         .header-banner {
             width: 100%;
-            height: 160px; /* Ketinggian yang seimbang untuk paparan mobile */
-            background: url('https://i.ibb.co/JjrcP5G0/Social-Studies-Google-Classroom-Header-in-Dark-Red-and-Yellow-Illustrative-Style.png') no-repeat center center;
-            background-size: 100% 100%; /* Memaksa keseluruhan gambar dipaparkan dan memenuhi ruang tanpa dipotong */
             border-bottom: 3px solid var(--swk-yellow);
+            line-height: 0;
         }
-        
+
+        .header-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
         /* Glassy Logo Placard */
         .logo-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: -60px;
+            margin-top: -50px;
             z-index: 10;
+            position: relative;
         }
 
         .glass-placard {
-            width: 110px;
-            height: 110px;
+            width: 100px;
+            height: 100px;
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -77,20 +82,20 @@
         }
 
         .portal-title h1 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             margin: 0;
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
         .portal-title h2 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin: 5px 0 0 0;
             color: var(--swk-yellow);
         }
 
         .container {
-            padding: 20px;
+            padding: 15px;
             max-width: 600px;
             margin: 0 auto;
             flex: 1;
@@ -134,18 +139,20 @@
 
         /* Buttons */
         .btn {
-            width: 100%;
-            padding: 14px;
+            padding: 12px;
             border: none;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
             text-align: center;
+            display: inline-block;
+            box-sizing: border-box;
         }
 
-        /* Sarawak Colors Login Button */
+        .btn-block { width: 100%; margin-bottom: 10px; }
+
         .btn-sarawak {
             background: linear-gradient(135deg, var(--swk-yellow) 33%, var(--swk-red) 33%, var(--swk-red) 66%, var(--swk-black) 66%);
             color: white;
@@ -153,8 +160,6 @@
             border: 1px solid #fff;
         }
         
-        .btn-sarawak:active { opacity: 0.8; }
-
         .btn-primary { background-color: #007bff; color: white; }
         .btn-secondary { background-color: #6c757d; color: white; }
         .btn-danger { background-color: #dc3545; color: white; }
@@ -197,12 +202,29 @@
         }
         .btn-att:not(.selected) { opacity: 0.6; }
 
-        /* Bottom Controls */
-        .bottom-controls {
+        /* Bottom Fixed Action Bar */
+        .fixed-bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1a1a1a;
+            border-top: 1px solid var(--glass-border);
+            padding: 10px;
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 20px;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.7);
+            z-index: 1000;
+            box-sizing: border-box;
+            flex-wrap: nowrap;
+        }
+
+        .fixed-bottom-bar .btn {
+            flex: 1;
+            padding: 12px 5px;
+            font-size: 0.8rem;
+            margin: 0;
         }
 
         /* Footer */
@@ -211,14 +233,12 @@
             padding: 20px;
             font-size: 0.8rem;
             color: #777;
-            background-color: #0a0a0a;
-            border-top: 1px solid #222;
-            margin-top: auto;
+            margin-bottom: 20px;
         }
 
         .hidden { display: none !important; }
         
-        /* Dashboard Loader */
+        /* Dashboard Loader & Record Items */
         .loader {
             text-align: center;
             padding: 20px;
@@ -226,13 +246,12 @@
             font-weight: bold;
         }
 
-        /* Record Item styling */
         .record-item {
             background: #2a2a2a;
             padding: 15px;
             border-radius: 8px;
-            margin-bottom: 10px;
-            border-left: 4px solid var(--swk-red);
+            margin-bottom: 15px;
+            border-left: 4px solid var(--swk-yellow);
         }
         .record-header {
             display: flex;
@@ -240,16 +259,43 @@
             margin-bottom: 10px;
             font-weight: bold;
         }
-        .record-actions {
+        
+        .student-detail-list {
+            margin-top: 10px;
+            padding: 10px;
+            background: #1e1e1e;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .detail-row {
             display: flex;
-            gap: 10px;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dashed #444;
+        }
+        .detail-row:last-child { border-bottom: none; }
+        
+        .status-h { color: var(--btn-hadir); }
+        .status-b { color: var(--btn-sebab); }
+        .status-ts { color: var(--btn-tanpa-sebab); }
+
+        .dashboard-actions {
+            display: flex;
+            gap: 8px;
             margin-top: 10px;
         }
+        .dashboard-actions .btn { flex: 1; padding: 10px; font-size: 0.85rem; }
+
     </style>
 </head>
 <body>
 
-    <div class="header-banner"></div>
+    <div class="header-banner">
+        <img src="https://i.ibb.co/JjrcP5G0/Social-Studies-Google-Classroom-Header-in-Dark-Red-and-Yellow-Illustrative-Style.png" alt="Header SEEP">
+    </div>
     <div class="logo-container">
         <div class="glass-placard">
             <img src="https://i.ibb.co/VYSKMXf1/Logo-Selirik.png" alt="Logo Sekolah">
@@ -264,8 +310,8 @@
         <div id="section-login" class="card">
             <h3 style="text-align: center; margin-top:0;">Log Masuk Guru</h3>
             <label for="ic-input">No. Kad Pengenalan</label>
-            <input type="number" id="ic-input" placeholder="Masukkan IC tanpa sempang (cth: 80010113xxxx)" onkeypress="handleLoginEnter(event)">
-            <button class="btn btn-sarawak" onclick="login()">LOG MASUK</button>
+            <input type="number" id="ic-input" placeholder="Masukkan IC tanpa sempang (cth: 80010113XXXX)" onkeypress="handleLoginEnter(event)">
+            <button class="btn btn-sarawak btn-block" onclick="login()">LOG MASUK</button>
         </div>
 
         <div id="section-selection" class="card hidden">
@@ -296,8 +342,7 @@
                 </script>
             </select>
 
-            <button class="btn btn-primary" style="margin-top: 10px;" onclick="loadStudents()">MULA KEMASUKAN</button>
-            <button class="btn btn-secondary" style="margin-top: 10px;" onclick="showSection('section-login')">KEMBALI</button>
+            <button class="btn btn-primary btn-block" style="margin-top: 10px;" onclick="loadStudents()">MULA KEMASUKAN</button>
         </div>
 
         <div id="section-attendance" class="hidden">
@@ -306,15 +351,7 @@
                 <h3 style="margin-top:0; border-bottom: 1px solid #444; padding-bottom: 10px;" id="attendance-title">Senarai Pelajar</h3>
                 <div id="student-list"></div>
             </div>
-
             <input type="text" id="keyboard-trap" style="opacity:0; position:absolute; z-index:-1;" onkeyup="handleEnterSkip(event)">
-
-            <div class="bottom-controls">
-                <button class="btn btn-secondary" onclick="showSection('section-selection')">Kembali</button>
-                <button class="btn btn-primary" onclick="simpanDanHantar()">Simpan & Hantar</button>
-                <button class="btn btn-info" onclick="bukaDashboard()">Semak Rekod</button>
-                <button class="btn btn-danger" onclick="logout()">Keluar</button>
-            </div>
         </div>
 
         <div id="section-dashboard" class="hidden">
@@ -323,19 +360,30 @@
                 <div id="dashboard-list">
                     </div>
             </div>
-            <div class="bottom-controls">
-                <button class="btn btn-secondary" onclick="showSection('section-attendance')">Kembali</button>
-                <button class="btn btn-danger" onclick="logout()">Keluar</button>
-            </div>
         </div>
+
+        <footer>Hakcipta NDJE@Selirik, Kapit 2026</footer>
     </div>
 
-    <footer>
-        Hakcipta NDJE@Selirik, Kapit 2026
-    </footer>
+    <div id="fixed-bottom-selection" class="fixed-bottom-bar hidden">
+        <button class="btn btn-secondary" onclick="logout()">Keluar</button>
+        <button class="btn btn-info" onclick="bukaDashboard()">Semak Rekod</button>
+    </div>
+
+    <div id="fixed-bottom-attendance" class="fixed-bottom-bar hidden">
+        <button class="btn btn-secondary" onclick="showSection('section-selection')">Kembali</button>
+        <button class="btn btn-primary" onclick="simpanDanHantar()">Simpan & Hantar</button>
+        <button class="btn btn-info" onclick="bukaDashboard()">Semak Rekod</button>
+        <button class="btn btn-danger" onclick="logout()">Keluar</button>
+    </div>
+
+    <div id="fixed-bottom-dashboard" class="fixed-bottom-bar hidden">
+        <button class="btn btn-secondary" onclick="showSection('section-selection')">Menu Utama</button>
+        <button class="btn btn-danger" onclick="logout()">Keluar</button>
+    </div>
 
     <script>
-        // Pangkalan Data Guru Hardcoded
+        // Pangkalan Data Guru
         const teachersData = {
             "751207135568": { name: "TIONG SIEW HOON", subjects: ["MATEMATIK 5 DIAMOND"] },
             "850805135684": { name: "NATALIE DAMIE ANAK JACOB ENGGAH", subjects: ["ENGLISH 4 RUBY", "ENGLISH 5 DIAMOND"] },
@@ -345,7 +393,7 @@
             "980627135299": { name: "DARREN GILBERT ANAK KOH", subjects: ["ENGLISH 3 RUBY", "ENGLISH 5 SAPPHIRE"] },
             "860805526983": { name: "GRAY ANAK JOWIM@JOWIN", subjects: ["SEJARAH 4 DIAMOND", "SEJARAH 5 AMETHYST"] },
             "911129136097": { name: "AQKMAL HAZIM BIN MUD", subjects: ["SEJARAH 4 RUBY", "SEJARAH 5 DIAMOND"] },
-            "871226525496": { name: "KAREN MAWAS ANAK ARAH", subjects: ["SEJARAH 4 AMETHYST", "5 EMERALD"] }, /* Note: "5 EMERALD" as requested */
+            "871226525496": { name: "KAREN MAWAS ANAK ARAH", subjects: ["SEJARAH 4 AMETHYST", "5 EMERALD"] },
             "900620137707": { name: "YONG KASI SIONG", subjects: ["SEJARAH 5 RUBY"] },
             "800718135867": { name: "KONG CHUNG SHING", subjects: ["SAINS 4 DIAMOND"] },
             "861122135080": { name: "ALEXANRA ANAK ANDREW KANA", subjects: ["ADDITIONAL MATHEMATICS 4 JADEITE", "MATEMATIK 5 JADEITE", "MATEMATIK 5 AMETYST"] },
@@ -377,7 +425,7 @@
             "990507135656": { name: "NORSYAZWANI BINT SALAINI", subjects: ["SAINS 1 DIAMOND"] },
             "971103085054": { name: "NUR ATHIRAH BINTI MD NOR", subjects: ["MATEMATIK 4 AMETHYST"] },
             "970927036787": { name: "MUHAMMAD BADRUL AMIN BIN AHMAD FUAD", subjects: ["MATHEMATICS 1 AMETHYST"] },
-            "00072130268":  { name: "NUR ELLYSHA BINTI NUR MUSWARIE", subjects: ["SAINS 1 RUBY", "SAINS 2 RUBY"] }, /* Missing leading 0 handled dynamically if parsed as string */
+            "00072130268":  { name: "NUR ELLYSHA BINTI NUR MUSWARIE", subjects: ["SAINS 1 RUBY", "SAINS 2 RUBY"] },
             "910204135752": { name: "THANNIE BINTI BETTY", subjects: ["MATEMATIK 2 DIAMOND"] },
             "000627130838": { name: "VANESSA ANAK PUTEH", subjects: ["ENGLISH 1 RUBY"] }
         };
@@ -401,14 +449,26 @@
         let currentTeacher = null;
         let currentStudents = [];
         let currentAttendance = {};
-        let currentRecordId = null; // For updating existing local record
+        let currentRecordId = null; 
 
-        function showSection(sectionId) {
+        function hideAllSections() {
             document.getElementById('section-login').classList.add('hidden');
             document.getElementById('section-selection').classList.add('hidden');
             document.getElementById('section-attendance').classList.add('hidden');
             document.getElementById('section-dashboard').classList.add('hidden');
+            
+            document.getElementById('fixed-bottom-selection').classList.add('hidden');
+            document.getElementById('fixed-bottom-attendance').classList.add('hidden');
+            document.getElementById('fixed-bottom-dashboard').classList.add('hidden');
+        }
+
+        function showSection(sectionId) {
+            hideAllSections();
             document.getElementById(sectionId).classList.remove('hidden');
+
+            if(sectionId === 'section-selection') document.getElementById('fixed-bottom-selection').classList.remove('hidden');
+            if(sectionId === 'section-attendance') document.getElementById('fixed-bottom-attendance').classList.remove('hidden');
+            if(sectionId === 'section-dashboard') document.getElementById('fixed-bottom-dashboard').classList.remove('hidden');
         }
 
         function handleLoginEnter(e) {
@@ -417,7 +477,6 @@
 
         function login() {
             let ic = document.getElementById('ic-input').value.trim();
-            // Pad with leading zero if missed for specific ICs
             if(ic === "72130268") ic = "00072130268"; 
             if(ic === "627130838") ic = "000627130838";
 
@@ -436,7 +495,6 @@
             subjectSelect.innerHTML = '<option value="">-- Pilih Subjek / Kelas --</option>';
 
             if (currentTeacher && formSelect) {
-                // Filter subjects roughly by form number if needed, or just show all allowed
                 currentTeacher.subjects.forEach(sub => {
                     let option = document.createElement('option');
                     option.value = sub;
@@ -465,13 +523,12 @@
                 let response = await fetch(csvLinks[form]);
                 let csvText = await response.text();
                 
-                // Parse CSV
                 let rows = csvText.split('\n');
                 currentStudents = [];
                 currentAttendance = {};
-                currentRecordId = null; // Reset
+                currentRecordId = null; 
                 
-                for (let i = 1; i < rows.length; i++) { // skip header
+                for (let i = 1; i < rows.length; i++) { 
                     let cols = rows[i].split(',');
                     if (cols.length >= 4) {
                         let name = cols[0].trim();
@@ -479,17 +536,16 @@
                         let gender = cols[2].trim();
                         let groupSubject = cols[3].trim();
 
-                        // Match student group with teacher selected subject
                         if (groupSubject.toLowerCase() === subject.toLowerCase() || subject.toLowerCase().includes(groupSubject.toLowerCase())) {
                             currentStudents.push({ name, className, gender, id: i });
-                            currentAttendance[i] = ""; // Default empty
+                            currentAttendance[i] = ""; 
                         }
                     }
                 }
 
                 renderStudentList();
             } catch (error) {
-                alert("Ralat memuat turun data pelajar. Sila pastikan anda mempunyai capaian internet.");
+                alert("Ralat memuat turun data pelajar. Sila pastikan capaian internet anda stabil.");
             } finally {
                 document.getElementById('loader').classList.add('hidden');
                 document.getElementById('keyboard-trap').focus();
@@ -524,23 +580,17 @@
         function markAtt(studentId, status) {
             currentAttendance[studentId] = status;
             renderStudentList();
-            
-            // Auto focus on hidden input for Enter key trap
             document.getElementById('keyboard-trap').focus();
         }
 
-        // Feature: Tekan Enter untuk lompat
         function handleEnterSkip(e) {
             if (e.key === 'Enter') {
-                // Find next unmarked student and scroll to them (simulate jumping)
                 let foundUnmarked = false;
                 for (let std of currentStudents) {
                     if (!currentAttendance[std.id]) {
-                        // Mark default as hadir if skipped? No, instruction says "lompat ke nama pelajar seterusnya"
                         let elem = document.querySelectorAll('.student-item')[currentStudents.indexOf(std)];
                         if(elem) {
                             elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            // Light up the element briefly
                             elem.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
                             setTimeout(() => { elem.style.backgroundColor = "transparent"; }, 500);
                         }
@@ -559,12 +609,9 @@
             let subject = document.getElementById('select-subject').value;
             let session = document.getElementById('select-session').value;
             
-            // Validation
             let uncompleted = currentStudents.filter(s => !currentAttendance[s.id]);
             if (uncompleted.length > 0) {
-                if(!confirm(`Terdapat ${uncompleted.length} pelajar belum ditanda kehadiran. Adakah anda pasti ingin simpan?`)) {
-                    return;
-                }
+                if(!confirm(`Terdapat ${uncompleted.length} pelajar belum ditanda. Adakah anda pasti ingin simpan?`)) return;
             }
 
             let dateStr = new Date().toLocaleString('ms-MY');
@@ -584,7 +631,6 @@
                 data: payloadData
             };
 
-            // 1. Simpan dalam LocalStorage
             let records = JSON.parse(localStorage.getItem('seep_records') || '[]');
             if (currentRecordId) {
                 let idx = records.findIndex(r => r.id === currentRecordId);
@@ -594,13 +640,10 @@
             }
             localStorage.setItem('seep_records', JSON.stringify(records));
 
-            // 2. Hantar ke Google App Script (GS)
             let appScriptUrl = appScriptLinks[form];
-            alert("Data sedang diproses untuk dihantar ke pelayan. Ia mungkin mengambil sedikit masa.");
+            alert("Data sedang diproses untuk dihantar ke pelayan.");
             
             try {
-                // Konsep API Call ke App Script. Menggunakan POST no-cors.
-                // Parameter 'action' boleh ditentukan di App Script untuk Update/Insert
                 await fetch(appScriptUrl, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -612,10 +655,10 @@
                         records: payloadData
                     })
                 });
-                alert("Data BERJAYA disimpan di peranti dan dihantar ke pangkalan data Google Sheet!");
+                alert("Data BERJAYA disimpan dan dihantar!");
                 bukaDashboard();
             } catch (err) {
-                alert("Data disimpan di peranti (LocalStorage), tetapi GAGAL dihantar ke Google Sheet. Sila cuba lagi apabila sambungan internet stabil.");
+                alert("Data disimpan di peranti, tetapi ralat berlaku semasa hantar ke Google Sheet.");
                 bukaDashboard();
             }
         }
@@ -629,11 +672,10 @@
             let myRecords = records.filter(r => currentTeacher && r.teacher === currentTeacher.name);
 
             if (myRecords.length === 0) {
-                container.innerHTML = '<p style="text-align:center; color:#aaa;">Tiada rekod kehadiran dijumpai untuk anda.</p>';
+                container.innerHTML = '<p style="text-align:center; color:#aaa;">Tiada rekod kehadiran dijumpai.</p>';
                 return;
             }
 
-            // Susun terbalik (terkini di atas)
             myRecords.reverse().forEach(rec => {
                 let div = document.createElement('div');
                 div.className = 'record-item';
@@ -641,17 +683,38 @@
                 let stats = { "Hadir": 0, "Tidak Hadir Bersebab": 0, "Tidak Hadir Tanpa Sebab": 0, "Tiada Rekod": 0 };
                 rec.data.forEach(d => { if(stats[d.status]!==undefined) stats[d.status]++; });
 
+                // Bina senarai HTML nama pelajar
+                let studentListHTML = rec.data.map((d, i) => {
+                    let statusClass = "status-h";
+                    if(d.status === "Tidak Hadir Bersebab") statusClass = "status-b";
+                    if(d.status === "Tidak Hadir Tanpa Sebab") statusClass = "status-ts";
+                    if(d.status === "Tiada Rekod") statusClass = "";
+
+                    return `
+                    <div class="detail-row">
+                        <span>${i+1}. ${d.name}</span>
+                        <span class="${statusClass}" style="font-weight:600; font-size:0.8rem">${d.status}</span>
+                    </div>`;
+                }).join('');
+
                 div.innerHTML = `
                     <div class="record-header">
                         <span>Sesi ${rec.session} - ${rec.subject}</span>
                         <span style="font-size:0.8rem; color:#aaa;">${rec.date}</span>
                     </div>
                     <div style="font-size: 0.9rem; margin-bottom:10px;">
-                        Hadir: <span style="color:var(--btn-hadir)">${stats["Hadir"]}</span> | 
-                        Bersebab: <span style="color:var(--btn-sebab)">${stats["Tidak Hadir Bersebab"]}</span> | 
-                        Tanpa Sebab: <span style="color:var(--btn-tanpa-sebab)">${stats["Tidak Hadir Tanpa Sebab"]}</span>
+                        Hadir: <span style="color:var(--btn-hadir); font-weight:bold;">${stats["Hadir"]}</span> | 
+                        Bersebab: <span style="color:var(--btn-sebab); font-weight:bold;">${stats["Tidak Hadir Bersebab"]}</span> | 
+                        Tanpa Sebab: <span style="color:var(--btn-tanpa-sebab); font-weight:bold;">${stats["Tidak Hadir Tanpa Sebab"]}</span>
                     </div>
-                    <div class="record-actions">
+                    
+                    <button class="btn btn-block btn-info" onclick="toggleSenarai('list-${rec.id}')" style="margin-top:5px; font-size:0.85rem; padding:8px;">Lihat Senarai Pelajar</button>
+                    
+                    <div id="list-${rec.id}" class="student-detail-list hidden">
+                        ${studentListHTML}
+                    </div>
+
+                    <div class="dashboard-actions">
                         <button class="btn btn-warning" onclick="kemaskiniRekod('${rec.id}')">Kemaskini</button>
                         <button class="btn btn-danger" onclick="hapusRekod('${rec.id}', '${rec.form}', '${rec.session}', '${rec.subject}')">Hapus</button>
                     </div>
@@ -660,18 +723,25 @@
             });
         }
 
+        function toggleSenarai(elementId) {
+            let el = document.getElementById(elementId);
+            if(el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+            } else {
+                el.classList.add('hidden');
+            }
+        }
+
         function kemaskiniRekod(recordId) {
             let records = JSON.parse(localStorage.getItem('seep_records') || '[]');
             let rec = records.find(r => r.id === recordId);
             if(rec) {
-                // Set selections
                 document.getElementById('select-form').value = rec.form;
                 updateSubjekList();
                 setTimeout(() => {
                     document.getElementById('select-subject').value = rec.subject;
                     document.getElementById('select-session').value = rec.session;
                     
-                    // Simulate loading students but bypass API call to reuse saved state
                     currentStudents = rec.data.map((d, index) => ({ name: d.name, className: d.className, id: index }));
                     currentAttendance = {};
                     rec.data.forEach((d, index) => { currentAttendance[index] = d.status === "Tiada Rekod" ? "" : d.status; });
@@ -685,13 +755,11 @@
         }
 
         async function hapusRekod(recordId, form, session, subject) {
-            if(confirm("Anda pasti ingin memadam rekod ini dari peranti dan Google Sheet?")) {
-                // 1. Hapus dari LocalStorage
+            if(confirm("Anda pasti ingin memadam rekod ini?")) {
                 let records = JSON.parse(localStorage.getItem('seep_records') || '[]');
                 records = records.filter(r => r.id !== recordId);
                 localStorage.setItem('seep_records', JSON.stringify(records));
 
-                // 2. Hantar arahan hapus ke Google Sheet
                 let appScriptUrl = appScriptLinks[form];
                 try {
                     await fetch(appScriptUrl, {
@@ -706,9 +774,8 @@
                     });
                     alert("Rekod berjaya dipadam!");
                 } catch (err) {
-                    alert("Rekod dipadam di peranti, tetapi terdapat ralat memadam di server.");
+                    alert("Rekod dipadam di peranti, ralat memadam di server.");
                 }
-                
                 bukaDashboard();
             }
         }
