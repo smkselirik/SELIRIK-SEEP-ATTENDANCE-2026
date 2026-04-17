@@ -23,36 +23,22 @@
             color: var(--text-light);
             margin: 0; padding: 0;
             overflow-x: hidden;
-            padding-bottom: 80px; /* Space for bottom nav */
+            padding-bottom: 80px;
         }
 
         /* --- HEADER & LOGO --- */
         .main-header {
             width: 100%;
-            height: 220px;
-            background-image: url('https://i.ibb.co/k6mJ2r8F/header-website-seep-latest.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding-top: 20px;
-            margin: 0; border: none;
+            margin: 0; 
+            padding: 0;
+            display: block;
         }
-
-        .header-title-box {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            padding: 10px 30px;
-            border-radius: 10px;
-            border: 1px solid var(--glass-border);
-            text-align: center;
+        .main-header img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
         }
-
-        .header-title-box h1 { margin: 0; font-size: 1.2rem; color: var(--swk-yellow); letter-spacing: 1px; }
-        .header-title-box p { margin: 0; font-size: 0.9rem; color: white; }
 
         .logo-container {
             width: 100px; height: 100px;
@@ -61,13 +47,21 @@
             border: 2px solid rgba(255,255,255,0.3);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            margin: -50px auto 20px auto;
+            margin: -50px auto 10px auto; /* Bertindih sedikit dengan header */
             position: relative; z-index: 10;
             box-shadow: 0 8px 32px rgba(0,0,0,0.5);
         }
         .logo-container img { width: 70px; height: auto; }
 
-        .container { padding: 15px; max-width: 600px; margin: 0 auto; }
+        .portal-title {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+        .portal-title h1 { margin: 0; font-size: 1.3rem; color: var(--swk-yellow); letter-spacing: 1px; }
+        .portal-title p { margin: 0; font-size: 0.9rem; color: white; }
+
+        .container { padding: 0 15px 15px 15px; max-width: 600px; margin: 0 auto; }
 
         /* --- GLASS CARD --- */
         .glass-card {
@@ -145,14 +139,16 @@
 <body>
 
     <header class="main-header">
-        <div class="header-title-box">
-            <h1>PORTAL KEHADIRAN SEEP</h1>
-            <p>Tahun 2026</p>
-        </div>
+        <img src="https://i.ibb.co/k6mJ2r8F/header-website-seep-latest.jpg" alt="Header SEEP">
     </header>
 
     <div class="logo-container">
         <img src="https://i.ibb.co/VYSKMXf1/Logo-Selirik.png" alt="Logo Selirik">
+    </div>
+
+    <div class="portal-title">
+        <h1>PORTAL KEHADIRAN SEEP</h1>
+        <p>Tahun 2026</p>
     </div>
 
     <div class="container">
@@ -277,7 +273,6 @@
         let attendanceRecord = {}; 
         let editModeId = null;
 
-        // Utility: CSV Parser
         function parseCSV(str) {
             const arr = []; let quote = false; let row = 0, col = 0, c = 0;
             for (let c = 0; c < str.length; c++) {
@@ -335,7 +330,7 @@
                 activeSubjek = editData.subjek;
                 activeSesi = editData.sesi;
                 editModeId = editData.id;
-                attendanceRecord = JSON.parse(JSON.stringify(editData.records)); // Copy
+                attendanceRecord = JSON.parse(JSON.stringify(editData.records)); 
             }
 
             currentTingkatan = getTingkatan(activeSubjek);
@@ -352,7 +347,6 @@
                 const csvData = await response.text();
                 const rows = parseCSV(csvData);
                 
-                // Col A=0(Name), B=1(Class), C=2(Gender), D=3(Subject)
                 const filtered = rows.filter(r => r[3] && r[3].trim().toUpperCase() === activeSubjek.toUpperCase());
                 
                 loading.style.display = "none";
@@ -371,7 +365,6 @@
                     rowDiv.className = 'student-row';
                     rowDiv.id = `row-${index}`;
                     
-                    // Pre-select if in edit mode
                     let activeG = "", activeY = "", activeR = "";
                     if(attendanceRecord[nama]) {
                         if(attendanceRecord[nama] === "Hadir") activeG = "active";
@@ -404,12 +397,10 @@
             const btn = Array.from(group.querySelectorAll('.att-btn')).find(b => b.innerText === searchStr);
             if(btn) btn.classList.add('active');
             
-            // Highlight row briefly
             const row = document.getElementById(`row-${idx}`);
             row.classList.add('highlight');
             setTimeout(() => row.classList.remove('highlight'), 300);
 
-            // Auto-scroll to next
             const next = document.getElementById(`row-${idx+1}`);
             if(next) {
                 setTimeout(() => next.scrollIntoView({behavior:'smooth', block:'center'}), 150);
@@ -420,14 +411,12 @@
             let history = JSON.parse(localStorage.getItem('seep_attendance') || '[]');
             
             if(editModeId) {
-                // Update existing
                 const index = history.findIndex(h => h.id === editModeId);
                 if(index > -1) {
                     history[index].records = attendanceRecord;
                     history[index].date = new Date().toLocaleString();
                 }
             } else {
-                // Create new
                 const newRecord = {
                     id: Date.now().toString(),
                     guruIC: document.getElementById('guru-ic').value,
@@ -445,7 +434,7 @@
 
         async function postToSheet(recordDataObj, isDelete = false) {
             const url = gasLinks[recordDataObj.tingkatan];
-            const kolumSesi = String.fromCharCode(64 + 4 + parseInt(recordDataObj.sesi)); // Sesi 1 = E(69)
+            const kolumSesi = String.fromCharCode(64 + 4 + parseInt(recordDataObj.sesi)); 
             
             const promises = Object.keys(recordDataObj.records).map(nama => {
                 const status = isDelete ? "" : recordDataObj.records[nama];
@@ -470,7 +459,6 @@
             alert("Menyimpan dan menghantar data ke pelayan. Sila tunggu sebentar...");
             saveToLocal();
             
-            // Re-fetch local record to post
             let history = JSON.parse(localStorage.getItem('seep_attendance') || '[]');
             let targetRecord = history.find(h => h.subjek === activeSubjek && h.sesi === activeSesi);
             
@@ -490,7 +478,6 @@
             const ic = document.getElementById('guru-ic').value;
             let history = JSON.parse(localStorage.getItem('seep_attendance') || '[]');
             
-            // Filter by current guru
             history = history.filter(h => h.guruIC === ic).sort((a,b) => b.id - a.id);
             
             if(history.length === 0) {
@@ -535,9 +522,8 @@
             if(record) {
                 alert("Sedang memadam data di pelayan...");
                 try {
-                    await postToSheet(record, true); // true for delete
+                    await postToSheet(record, true);
                     
-                    // Remove from local
                     history = history.filter(h => h.id !== id);
                     localStorage.setItem('seep_attendance', JSON.stringify(history));
                     renderLocalDashboard();
@@ -563,7 +549,6 @@
                 const csvData = await response.text();
                 const rows = parseCSV(csvData);
                 
-                // Ambil header (baris 0)
                 const headers = rows[0];
                 const filtered = rows.slice(1).filter(r => r[3] && r[3].trim().toUpperCase() === activeSubjek.toUpperCase());
 
@@ -578,7 +563,6 @@
                     html += `<div style="background:rgba(255,255,255,0.05); padding:10px; margin-bottom:10px; border-radius:8px;">`;
                     html += `<div style="font-weight:bold; font-size:13px; margin-bottom:8px;">${p[0]}</div>`;
                     
-                    // Semak lajur Sesi (Dari Lajur E / Index 4 ke atas)
                     let adaRekod = false;
                     for(let i=4; i<=21; i++) {
                         if(p[i] && p[i].trim() !== "") {
