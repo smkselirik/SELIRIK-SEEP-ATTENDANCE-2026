@@ -2,461 +2,679 @@
 <html lang="ms">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PORTAL KEHADIRAN SEEP 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #121212;
-            --card-dark: #1e1e1e;
-            --text-light: #e0e0e0;
-            --swk-yellow: #FCD116;
-            --swk-red: #CE1126;
-            --swk-black: #000000;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --btn-hadir: #28a745;
-            --btn-sebab: #ffc107;
-            --btn-tanpa-sebab: #dc3545;
+            --sarawak-yellow: #FCD116;
+            --sarawak-red: #E32219;
+            --sarawak-black: #231F20;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.3);
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding-bottom: 90px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--sarawak-yellow) 0%, var(--sarawak-red) 50%, var(--sarawak-black) 100%);
+            background-attachment: fixed;
+            color: white;
+            padding-bottom: 80px; /* Space for bottom nav */
         }
 
-        /* Header Responsive - Memenuhi Ruang */
-        .header-banner {
+        /* Header & Logo */
+        .header-img-container {
             width: 100%;
-            border-bottom: 3px solid var(--swk-yellow);
-            line-height: 0;
+            height: 120px;
             overflow: hidden;
         }
-
-        .header-banner img {
+        .header-img-container img {
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
             object-fit: cover;
         }
-
         .logo-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: -45px;
-            z-index: 10;
-            position: relative;
-        }
-
-        .glass-placard {
-            width: 90px;
-            height: 90px;
+            margin: -50px auto 10px auto;
+            width: 100px;
+            height: 100px;
             background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 50%;
-            padding: 10px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 2px solid var(--glass-border);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            z-index: 10;
+            position: relative;
+        }
+        .logo-container img {
+            width: 70px;
+            height: auto;
         }
 
-        .glass-placard img { width: 85%; height: 85%; object-fit: contain; }
+        /* Typography */
+        h1, h2, h3 { text-align: center; margin: 5px 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+        h1 { font-size: 1.5rem; letter-spacing: 1px; }
+        h2 { font-size: 1.2rem; font-weight: normal; }
 
-        .portal-title { text-align: center; margin-top: 10px; }
-        .portal-title h1 { font-size: 1.3rem; margin: 0; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
-        .portal-title h2 { font-size: 1rem; margin: 3px 0 0 0; color: var(--swk-yellow); }
-
-        .container { padding: 15px; max-width: 600px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-
-        .card {
-            background-color: var(--card-dark);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            margin-bottom: 20px;
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
-        label { display: block; margin-bottom: 8px; font-size: 0.85rem; color: #aaa; }
-        input, select {
-            width: 100%; padding: 14px; margin-bottom: 15px; border: 1px solid #444;
-            border-radius: 8px; background-color: #2a2a2a; color: #fff; font-size: 1rem; box-sizing: border-box;
+        /* Inputs & Selects */
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255,255,255,0.9);
+            font-size: 1rem;
+            box-sizing: border-box;
         }
 
+        /* Buttons */
         .btn {
-            padding: 14px; border: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600;
-            cursor: pointer; transition: all 0.2s; text-align: center; display: inline-block; width: 100%; margin-bottom: 10px;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s, opacity 0.2s;
+            text-transform: uppercase;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
         }
-
-        .btn-sarawak {
-            background: linear-gradient(135deg, var(--swk-yellow) 33%, var(--swk-red) 33%, var(--swk-red) 66%, var(--swk-black) 66%);
-            color: white; border: 1px solid #fff;
-        }
+        .btn:active { transform: scale(0.95); }
+        .btn-primary { background: linear-gradient(45deg, #2196F3, #00BCD4); }
         
-        .btn-primary { background-color: #007bff; color: white; }
-        .btn-success { background-color: #28a745; color: white; }
-        .btn-info { background-color: #17a2b8; color: white; }
-        .btn-warning { background-color: #ffc107; color: black; }
-        .btn-danger { background-color: #dc3545; color: white; }
-        .btn-secondary { background-color: #6c757d; color: white; }
-
-        /* Attendance Styles */
-        .student-item { padding: 15px 0; border-bottom: 1px solid #333; }
-        .student-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 10px; color: #fff; }
-        .attendance-actions { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-        .btn-att { padding: 12px 5px; font-size: 0.75rem; border-radius: 6px; border: 2px solid transparent; color: white; font-weight: 600; background: #333; }
-        .btn-att.hadir { background: var(--btn-hadir); }
-        .btn-att.sebab { background: var(--btn-sebab); color: #000; }
-        .btn-att.tanpa-sebab { background: var(--btn-tanpa-sebab); }
-        .btn-att.selected { border-color: white; transform: scale(1.03); box-shadow: 0 0 10px rgba(255,255,255,0.2); opacity: 1; }
-        .btn-att:not(.selected) { opacity: 0.5; }
-
-        /* Fixed Bottom Bar */
-        .fixed-bottom-bar {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background: #1a1a1a; padding: 10px; display: flex; gap: 8px;
-            box-shadow: 0 -4px 15px rgba(0,0,0,0.6); z-index: 1000; box-sizing: border-box;
+        /* Attendance Buttons */
+        .att-group { display: flex; gap: 5px; margin-top: 10px; }
+        .btn-hadir { background-color: #4CAF50; flex: 1; font-size: 0.8rem; padding: 10px 5px;}
+        .btn-bersebab { background-color: #FFC107; color: black; flex: 1; font-size: 0.8rem; padding: 10px 5px;}
+        .btn-tanpa-sebab { background-color: #F44336; flex: 1; font-size: 0.8rem; padding: 10px 5px;}
+        
+        .student-row {
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 15px 0;
         }
-        .fixed-bottom-bar .btn { margin-bottom: 0; padding: 12px 5px; font-size: 0.75rem; flex: 1; }
+        .student-row:last-child { border-bottom: none; }
+        .student-name { font-weight: bold; font-size: 1.1rem; }
+        .student-info { font-size: 0.85rem; color: #eee; }
 
-        /* Dashboard Styles */
-        .record-item { background: #2a2a2a; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--swk-yellow); }
-        .student-detail-list { margin-top: 10px; padding: 10px; background: #1e1e1e; border-radius: 6px; font-size: 0.8rem; max-height: 200px; overflow-y: auto; }
-        .detail-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #444; }
-        .hidden { display: none !important; }
-        .loader { text-align: center; padding: 20px; color: var(--swk-yellow); font-weight: bold; }
+        /* Status indicators */
+        .status-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        /* Fixed Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(35, 31, 32, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+            z-index: 100;
+        }
+        .bottom-nav button {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            width: 25%;
+        }
+        .bottom-nav button i { font-size: 1.5rem; margin-bottom: 3px; color: var(--sarawak-yellow); }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Views */
+        .view-section { display: none; }
+        .view-section.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Record Table */
+        .record-card {
+            background: rgba(0,0,0,0.4);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .record-actions { display: flex; gap: 5px; margin-top: 10px; }
+        .btn-small { padding: 5px 10px; font-size: 0.8rem; border: none; border-radius: 5px; cursor: pointer; color: white; }
+        .btn-update { background-color: #2196F3; }
+        .btn-delete { background-color: #F44336; }
+
+        #loader { text-align: center; display: none; margin: 20px 0; font-weight: bold; color: var(--sarawak-yellow); }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="header-banner">
-        <img src="https://i.ibb.co/JjrcP5G0/Social-Studies-Google-Classroom-Header-in-Dark-Red-and-Yellow-Illustrative-Style.png" alt="Header">
+    <div class="header-img-container">
+        <img src="https://i.ibb.co/VpC03Qkn/IMG-8705.png" alt="Header Banner">
     </div>
+    
     <div class="logo-container">
-        <div class="glass-placard"><img src="https://i.ibb.co/VYSKMXf1/Logo-Selirik.png" alt="Logo"></div>
-        <div class="portal-title"><h1>PORTAL KEHADIRAN SEEP</h1><h2>Sesi 2026</h2></div>
+        <img src="https://i.ibb.co/VYSKMXf1/Logo-Selirik.png" alt="Logo Sekolah">
     </div>
 
-    <div class="container">
-        <div id="section-login" class="card">
-            <h3 style="text-align: center; margin-top:0;">Log Masuk Guru</h3>
-            <input type="number" id="ic-input" placeholder="No. IC Tanpa Sempang" onkeypress="if(event.key==='Enter')login()">
-            <button class="btn btn-sarawak" onclick="login()">LOG MASUK</button>
-        </div>
+    <h1>PORTAL KEHADIRAN SEEP</h1>
+    <h2>TAHUN 2026</h2>
 
-        <div id="section-selection" class="card hidden">
-            <h3 id="teacher-name-display" style="color:var(--swk-yellow); margin-top:0;">-</h3>
-            
-            <label>Pilih Kelas & Subjek</label>
-            <select id="select-subject">
-                <option value="">-- Sila Pilih --</option>
+    <div id="view-login" class="view-section active">
+        <div class="glass-card">
+            <h3>Log Masuk Guru</h3>
+            <p style="text-align:center; font-size:0.9rem;">Sila masukkan No. Kad Pengenalan anda</p>
+            <input type="number" id="guru-id" placeholder="Cth: 80010113xxxx" tabindex="1">
+            <button class="btn btn-primary" onclick="login()" tabindex="2">Log Masuk</button>
+        </div>
+    </div>
+
+    <div id="view-selection" class="view-section">
+        <div class="glass-card">
+            <h3 id="guru-name-display">Selamat Datang</h3>
+            <label>Pilih Kelas & Subjek:</label>
+            <select id="subjek-select"></select>
+
+            <label>Pilih Sesi:</label>
+            <select id="sesi-select">
+                <option value="1">SESI 1 (Kolum E)</option>
+                <option value="2">SESI 2 (Kolum F)</option>
+                <option value="3">SESI 3 (Kolum G)</option>
+                <option value="4">SESI 4 (Kolum H)</option>
+                <option value="5">SESI 5 (Kolum I)</option>
+                <option value="6">SESI 6 (Kolum J)</option>
+                <option value="7">SESI 7 (Kolum K)</option>
+                <option value="8">SESI 8 (Kolum L)</option>
+                <option value="9">SESI 9 (Kolum M)</option>
+                <option value="10">SESI 10 (Kolum N)</option>
+                <option value="11">SESI 11 (Kolum O)</option>
+                <option value="12">SESI 12 (Kolum P)</option>
+                <option value="13">SESI 13 (Kolum Q)</option>
+                <option value="14">SESI 14 (Kolum R)</option>
+                <option value="15">SESI 15 (Kolum S)</option>
+                <option value="16">SESI 16 (Kolum T)</option>
+                <option value="17">SESI 17 (Kolum U)</option>
+                <option value="18">SESI 18 (Kolum V)</option>
             </select>
 
-            <label>Pilih Sesi</label>
-            <select id="select-session">
-                <script>for(let i=1; i<=18; i++) document.write(`<option value="${i}">Sesi ${i}</option>`);</script>
-            </select>
-
-            <button class="btn btn-primary" onclick="loadStudents()">MULA KEMASUKAN</button>
-            <button class="btn btn-warning" onclick="semakRekodMaster()">SEMAK REKOD MASTER (LIVE)</button>
-        </div>
-
-        <div id="section-attendance" class="hidden">
-            <div id="loader" class="loader hidden">Memuatkan Data...</div>
-            <div class="card">
-                <h3 id="attendance-title" style="margin-top:0; border-bottom:1px solid #444; padding-bottom:10px;">Senarai Pelajar</h3>
-                <div id="student-list"></div>
-            </div>
-        </div>
-
-        <div id="section-dashboard" class="hidden">
-            <div class="card">
-                <h3 style="margin-top:0; color:var(--swk-yellow);">Rekod Kehadiran</h3>
-                <div id="dashboard-list"></div>
-            </div>
+            <button class="btn btn-primary" onclick="loadStudents()">Buka Senarai Kehadiran</button>
         </div>
     </div>
 
-    <div id="bar-selection" class="fixed-bottom-bar hidden">
-        <button class="btn btn-info" onclick="bukaDashboard()">Rekod Tempatan</button>
-        <button class="btn btn-danger" onclick="logout()">Log Keluar</button>
+    <div id="view-attendance" class="view-section">
+        <div class="glass-card">
+            <h3 id="att-title">Senarai Pelajar</h3>
+            <div id="loader">Memuat turun data pelajar... <i class="fas fa-spinner fa-spin"></i></div>
+            <div id="student-list"></div>
+        </div>
     </div>
 
-    <div id="bar-attendance" class="fixed-bottom-bar hidden">
-        <button class="btn btn-success" onclick="simpanDanHantar()">Simpan & Hantar</button>
-        <button class="btn btn-secondary" onclick="showSection('section-selection')">Kembali</button>
+    <div id="view-dashboard" class="view-section">
+        <div class="glass-card">
+            <h3>Semakan Rekod (Local)</h3>
+            <div id="record-list">Tiada rekod disimpan.</div>
+        </div>
     </div>
 
-    <div id="bar-dashboard" class="fixed-bottom-bar hidden">
-        <button class="btn btn-primary" onclick="showSection('section-selection')">Menu Utama</button>
-        <button class="btn btn-danger" onclick="logout()">Log Keluar</button>
+    <div class="footer">Hakcipta NDJE@Selirik, Kapit 2026</div>
+
+    <div class="bottom-nav" id="bottom-nav" style="display:none;">
+        <button onclick="goBack()"><i class="fas fa-arrow-left"></i>Kembali</button>
+        <button onclick="simpanDanHantar()"><i class="fas fa-paper-plane"></i>Simpan & Hantar</button>
+        <button onclick="showDashboard()"><i class="fas fa-list-check"></i>Semak Rekod</button>
+        <button onclick="logout()"><i class="fas fa-power-off"></i>Keluar</button>
     </div>
 
     <script>
-        const teachersData = {
-            "751207135568": { name: "TIONG SIEW HOON", subjects: ["MATEMATIK 5 DIAMOND"] },
-            "850805135684": { name: "NATALIE DAMIE ANAK JACOB ENGGAH", subjects: ["ENGLISH 4 RUBY", "ENGLISH 5 DIAMOND"] },
-            "800530125085": { name: "ARNOLD JUNIOR AUGUSTINE", subjects: ["ENGLISH 4 AMETHYST", "ENGLISH 5 AMETHYST"] },
-            "860129525618": { name: "RUNA ANAK SANGGONG", subjects: ["ENGLISH 4 DIAMOND", "ENGLISH 5 RUBY"] },
-            "981014135899": { name: "GEORGE CHONG", subjects: ["ENGLISH 4 DIAMOND", "ENGLISH 5 EMERALD"] },
-            "980627135299": { name: "DARREN GILBERT ANAK KOH", subjects: ["ENGLISH 3 RUBY", "ENGLISH 5 SAPPHIRE"] },
-            "860805526983": { name: "GRAY ANAK JOWIM@JOWIN", subjects: ["SEJARAH 4 DIAMOND", "SEJARAH 5 AMETHYST"] },
-            "911129136097": { name: "AQKMAL HAZIM BIN MUD", subjects: ["SEJARAH 4 RUBY", "SEJARAH 5 DIAMOND"] },
-            "871226525496": { name: "KAREN MAWAS ANAK ARAH", subjects: ["SEJARAH 4 AMETHYST", "5 EMERALD"] },
-            "900620137707": { name: "YONG KASI SIONG", subjects: ["SEJARAH 5 RUBY"] },
-            "800718135867": { name: "KONG CHUNG SHING", subjects: ["SAINS 4 DIAMOND"] },
-            "861122135080": { name: "ALEXANRA ANAK ANDREW KANA", subjects: ["ADDITIONAL MATHEMATICS 4 JADEITE", "MATEMATIK 5 JADEITE", "MATEMATIK 5 AMETYST"] },
-            "840927135480": { name: "AMMY CYNTHIA ANAK ACHAN", subjects: ["SAINS 3 AMETHYST", "SAINS 4 SAPPHIRE"] },
-            "970825016670": { name: "BRENDA AIMA ANAK JOSHUA MARIYAM", subjects: ["BIOLOGY 4 JADEITE", "SAINS 3 AMETHYST"] },
-            "920317036207": { name: "CHE MOHD UDAIY BIN CHE ABDUL HADI", subjects: ["PHYSICS 4 JADEITE", "SAINS 3 RUBY"] },
-            "840607135430": { name: "DIANA ANAK LIMBI", subjects: ["SAINS 4 RUBY", "SAINS 5 AMETHYST"] },
-            "010227130467": { name: "GONZALES ANAK ABING", subjects: ["MATEMATIK 4 JADEITE", "MATEMATIK 5 SAPPHIRE"] },
-            "940628135710": { name: "JACINTA ANAK BUDIT", subjects: ["PHYSICS 5 JADEITE", "SAINS 5 DIAMOND"] },
-            "980605135925": { name: "JACKSON LEO ANAK SEBA", subjects: ["SEJARAH 5 SAPPHIRE"] },
-            "990427135576": { name: "LORRAINNA SIERRA ANAK MEGONG", subjects: ["ENGLISH 3 AMETHYST"] },
-            "950905036147": { name: "MUHAMMAD HANIF IQWAN BIN ABD AZIZ", subjects: ["MATEMATIK 3 DIAMOND"] },
-            "780502135387": { name: "AWIN ANAK ENGGA", subjects: ["MATEMATIK 3 AMETHYST"] },
-            "960408135290": { name: "NURSYAMIERA BINTI MAJAIE", subjects: ["MATEMATIK 3 RUBY", "MATEMATIK 4 RUBY"] },
-            "930403135198": { name: "NURUL SAMIZA BT ABANG", subjects: ["MATEMATIK 4 DIAMOND", "MATEMATIK 5 EMERALD"] },
-            "940318135694": { name: "SIA KANG YEE", subjects: ["CHEMISTRY 4 JADEITE", "CHEMISTRY 5 JADEITE"] },
-            "960830125354": { name: "SITI NOR LIYANA BINTI MOHD TASRIB", subjects: ["SAINS 3 DIAMOND"] },
-            "910306135868": { name: "STEPHANIE ANAK JUKY", subjects: ["BIOLOGY 5 JADEITE", "SAINS 5 RUBY"] },
-            "730417055045": { name: "WONG CHEE LOONG", subjects: ["ADDITIONAL MATHEMATICS 5 JADEITE", "MATEMATIK 5 RUBY"] },
-            "790603135182": { name: "CATHERINE TING LEH MEE", subjects: ["SAINS 1 AMETHYST"] },
-            "900217135285": { name: "AUDIE PETER ANAK JOACHIM", subjects: ["ENGLISH 1 AMETHYST", "ENGLISH 2 DIAMOND"] },
-            "960820126054": { name: "BELLA ALFEYANA BOBBY", subjects: ["ENGLISH 2 RUBY"] },
-            "960707136410": { name: "CHRISTINA GADING ANAK MERING", subjects: ["ENGLISH 1 DIAMOND"] },
-            "921011135725": { name: "FRANKLIN ANAK BALA", subjects: ["SAINS 2 AMETHYST"] },
-            "961202135572": { name: "MELISSA BINTI MANDE", subjects: ["MATEMATIK 1 DIAMOND", "MATEMATIK 2 RUBY"] },
-            "940129136671": { name: "MOHD FARIDH REZZA BIN MOHD SABLI", subjects: ["ENGLISH 2 AMETHYST"] },
-            "940708126945": { name: "MOHD. JAIEROL BIN JUMIN", subjects: ["MATEMATIK 1 RUBY", "MATEMATIK 2 AMETHYST"] },
-            "861027526673": { name: "NELSON ANAK GEORGE", subjects: ["SAINS 2 DIAMOND"] },
-            "990507135656": { name: "NORSYAZWANI BINT SALAINI", subjects: ["SAINS 1 DIAMOND"] },
-            "971103085054": { name: "NUR ATHIRAH BINTI MD NOR", subjects: ["MATEMATIK 4 AMETHYST"] },
-            "970927036787": { name: "MUHAMMAD BADRUL AMIN BIN AHMAD FUAD", subjects: ["MATHEMATICS 1 AMETHYST"] },
-            "00072130268":  { name: "NUR ELLYSHA BINTI NUR MUSWARIE", subjects: ["SAINS 1 RUBY", "SAINS 2 RUBY"] },
-            "910204135752": { name: "THANNIE BINTI BETTY", subjects: ["MATEMATIK 2 DIAMOND"] },
-            "000627130838": { name: "VANESSA ANAK PUTEH", subjects: ["ENGLISH 1 RUBY"] }
+        // --- 1. DATABASE GURU ---
+        const guruDb = {
+            "780502135387": { name: "AWIN ANAK ENGGA", subjek: ["MATEMATIK 3 AMETHYST"] },
+            "751207135568": { name: "TIONG SIEW HOON", subjek: ["MATEMATIK 5 DIAMOND"] },
+            "850805135684": { name: "NATALIE DAMIE ANAK JACOB ENGGAH", subjek: ["ENGLISH 4 RUBY", "ENGLISH 5 DIAMOND"] },
+            "800530125085": { name: "ARNOLD JUNIOR AUGUSTINE", subjek: ["ENGLISH 4 AMETHYST", "ENGLISH 5 AMETHYST"] },
+            "860129525618": { name: "RUNA ANAK SANGGONG", subjek: ["ENGLISH 4 DIAMOND", "ENGLISH 5 RUBY"] },
+            "981014135899": { name: "GEORGE CHONG", subjek: ["ENGLISH 4 DIAMOND", "ENGLISH 5 EMERALD"] },
+            "980627135299": { name: "DARREN GILBERT ANAK KOH", subjek: ["ENGLISH 3 RUBY", "ENGLISH 5 SAPPHIRE"] },
+            "860805526983": { name: "GRAY ANAK JOWIM@JOWIN", subjek: ["SEJARAH 4 DIAMOND", "SEJARAH 5 AMETHYST"] },
+            "911129136097": { name: "AQKMAL HAZIM BIN MUD", subjek: ["SEJARAH 4 RUBY", "SEJARAH 5 DIAMOND"] },
+            "871226525496": { name: "KAREN MAWAS ANAK ARAH", subjek: ["SEJARAH 4 AMETYST"] },
+            "900620137707": { name: "YONG KASI SIONG", subjek: ["SEJARAH 5 RUBY"] },
+            "800718135867": { name: "KONG CHUNG SHING", subjek: ["SAINS 4 DIAMOND"] },
+            "861122135080": { name: "ALEXANRA ANAK ANDREW KANA", subjek: ["ADDITIONAL MATHEMATICS 4 JADEITE", "MATEMATIK 5 JADEITE", "MATEMATIK 5 AMETYST"] },
+            "840927135480": { name: "AMMY CYNTHIA ANAK ACHAN", subjek: ["SAINS 3 AMETHYST"] },
+            "970825016670": { name: "BRENDA AIMA ANAK JOSHUA MARIYAM", subjek: ["BIOLOGY 4 JADEITE", "SAINS 3 AMETHYST"] },
+            "920317036207": { name: "CHE MOHD UDAIY BIN CHE ABDUL HADI", subjek: ["PHYSICS 4 JADEITE", "SAINS 3 RUBY"] },
+            "840607135430": { name: "DIANA ANAK LIMBI", subjek: ["SAINS 4 RUBY", "SAINS 5 AMETHYST"] },
+            "010227130467": { name: "GONZALES ANAK ABING", subjek: ["MATEMATIK 4 JADEITE", "MATEMATIK 5 SAPPHIRE"] },
+            "940628135710": { name: "JACINTA ANAK BUDIT", subjek: ["PHYSICS 5 JADEITE", "SAINS 5 DIAMOND"] },
+            "980605135925": { name: "JACKSON LEO ANAK SEBA", subjek: ["SEJARAH 5 SAPPHIRE"] },
+            "990427135576": { name: "LORRAINNA SIERRA ANAK MEGONG", subjek: ["ENGLISH 3 AMETHYST"] },
+            "950905036147": { name: "MUHAMMAD HANIF IQWAN BIN ABD AZIZ", subjek: ["MATEMATIK 3 DIAMOND", "MATEMATIK 4 AMETHYST"] },
+            "960408135290": { name: "NURSYAMIERA BINTI MAJAIE", subjek: ["MATEMATIK 3 RUBY", "MATEMATIK 4 RUBY"] },
+            "930403135198": { name: "NURUL SAMIZA BT ABANG", subjek: ["MATEMATIK 4 DIAMOND", "MATEMATIK 5 EMERALD"] },
+            "940318135694": { name: "SIA KANG YEE", subjek: ["CHEMISTRY 4 JADEITE", "CHEMISTRY 5 JADEITE"] },
+            "960830125354": { name: "SITI NOR LIYANA BINTI MOHD TASRIB", subjek: ["SAINS 3 DIAMOND"] },
+            "910306135868": { name: "STEPHANIE ANAK JUKY", subjek: ["BIOLOGY 5 JADEITE", "SAINS 5 RUBY"] },
+            "730417055045": { name: "WONG CHEE LOONG", subjek: ["ADDITIONAL MATHEMATICS 5 JADEITE", "MATEMATIK 5 RUBY"] },
+            "790603135182": { name: "CATHERINE TING LEH MEE", subjek: ["SAINS 1 AMETHYST"] },
+            "900217135285": { name: "AUDIE PETER ANAK JOACHIM", subjek: ["ENGLISH 1 AMETHYST", "ENGLISH 2 DIAMOND"] },
+            "960820126054": { name: "BELLA ALFEYANA BOBBY", subjek: ["ENGLISH 2 RUBY"] },
+            "960707136410": { name: "CHRISTINA GADING ANAK MERING", subjek: ["ENGLISH 1 DIAMOND"] },
+            "921011135725": { name: "FRANKLIN ANAK BALA", subjek: ["SAINS 2 AMETHYST"] },
+            "961202135572": { name: "MELISSA BINTI MANDE", subjek: ["MATEMATIK 1 DIAMOND", "MATEMATIK 2 RUBY"] },
+            "940129136671": { name: "MOHD FARIDH REZZA BIN MOHD SABLI", subjek: ["BAHASA INGGERIS 2 AMETHYST"] },
+            "940708126945": { name: "MOHD. JAIEROL BIN JUMIN", subjek: ["MATEMATIK 1 RUBY", "MATEMATIK 2 AMETHYST"] },
+            "861027526673": { name: "NELSON ANAK GEORGE", subjek: ["SAINS 2 DIAMOND"] },
+            "990507135656": { name: "NORSYAZWANI BINT SALAINI", subjek: ["SAINS 1 DIAMOND"] },
+            "971103085054": { name: "NUR ATHIRAH BINTI MD NOR", subjek: ["MATEMATIK 4 AMETHYST"] },
+            "970927036787": { name: "MUHAMMAD BADRUL AMIN BIN AHMAD FUAD", subjek: ["MATEMATIK 1 AMETHYST"] },
+            "00072130268": { name: "NUR ELLYSHA BINTI NUR MUSWARIE", subjek: ["SAINS 1 RUBY", "SAINS 2 RUBY"] },
+            "910204135752": { name: "THANNIE BINTI BETTY", subjek: ["MATEMATIK 2 DIAMOND"] },
+            "000627130838": { name: "VANESSA ANAK PUTEH", subjek: ["ENGLISH 1 RUBY"] }
         };
 
-        const csvLinks = {
-            "1": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQCbmoYUWEIQIYGLveu-q4TOsYjzT_1mq6w2-m_m0Q5e5G2Oy0G9dXVP3yxNHjY4qjZQ3LIKx9j2gvl/pub?gid=154786193&single=true&output=csv",
-            "2": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSi-4btpKwvSPukQGKHP0hKMHxxPfhbWgIcJGHdD2HjsvIjXuuFzAAuNL59R59sbMnocvfOv0KGuoNB/pub?output=csv",
-            "3": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpl0emnND3D0WSm0n92Qj3rjVtI7L36FHOSZXhOBulRJslOGtD8yIgOw74hZfljlQ2HMwxf2jogl1-/pub?output=csv",
-            "4": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRoPGa6YjNCurNwaGTABEflsRqSactw6orXWR6w3AlIn-25LgczQxahCu7rPRVlnKbQWndUz0rdtKAy/pub?output=csv",
-            "5": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQPx_Vym9O7mQejaGpkZjLEeTtu5sGxB36NRnPhc88YPAA0JyW64m5gg8XdEPi67QQul-jkUpv-Vczj/pub?output=csv"
+        // --- 2. URL SUMBER DATA (CSV) ---
+        const csvUrls = {
+            1: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQCbmoYUWEIQIYGLveu-q4TOsYjzT_1mq6w2-m_m0Q5e5G2Oy0G9dXVP3yxNHjY4qjZQ3LIKx9j2gvl/pub?gid=154786193&single=true&output=csv",
+            2: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSi-4btpKwvSPukQGKHP0hKMHxxPfhbWgIcJGHdD2HjsvIjXuuFzAAuNL59R59sbMnocvfOv0KGuoNB/pub?output=csv",
+            3: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpl0emnND3D0WSm0n92Qj3rjVtI7L36FHOSZXhOBulRJslOGtD8yIgOw74hZfljlQ2HMwxf2jogl1-/pub?output=csv",
+            4: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRoPGa6YjNCurNwaGTABEflsRqSactw6orXWR6w3AlIn-25LgczQxahCu7rPRVlnKbQWndUz0rdtKAy/pub?output=csv",
+            5: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQPx_Vym9O7mQejaGpkZjLEeTtu5sGxB36NRnPhc88YPAA0JyW64m5gg8XdEPi67QQul-jkUpv-Vczj/pub?output=csv"
         };
 
-        const appScriptLinks = {
-            "1": "https://script.google.com/macros/s/AKfycbwltfX7rBOSowNuAjqGqfAE19wewRE9rSg7Xe0Jdf_fAsrlMKEmHpBCVD01xO-fV-nE/exec",
-            "2": "https://script.google.com/macros/s/AKfycbzHFtf4FgmUrtg4NNCi0libpnhOHCk2TnBI-RX_dvNb8fu7jkXoVgVrjSwcrpoFylvK/exec",
-            "3": "https://script.google.com/macros/s/AKfycbxbJSaw6tWZjnCGSexUBp2X_yCYAu-sCpoDe1aGcqDJ13w9NOJvD4ac6f18SWlARWkh/exec",
-            "4": "https://script.google.com/macros/s/AKfycbwUlfU0Sv7N20kANe05v3l1LF8I2fgGkF0RHpakDfFFcY_rug3lu1ay5OArSsMElmivQg/exec",
-            "5": "https://script.google.com/macros/s/AKfycbxtRvCTS_E2VaOqSC3Ay0EUB201PP3GX_KY66CLNk4FHV1ACPvbEcCtXAj5nNgNMxZf/exec"
+        // --- 3. URL GOOGLE APPS SCRIPT (DESTINASI HANTARAN) ---
+        const gasUrls = {
+            1: "https://script.google.com/macros/s/AKfycbwltfX7rBOSowNuAjqGqfAE19wewRE9rSg7Xe0Jdf_fAsrlMKEmHpBCVD01xO-fV-nE/exec",
+            2: "https://script.google.com/macros/s/AKfycbzHFtf4FgmUrtg4NNCi0libpnhOHCk2TnBI-RX_dvNb8fu7jkXoVgVrjSwcrpoFylvK/exec",
+            3: "https://script.google.com/macros/s/AKfycbxbJSaw6tWZjnCGSexUBp2X_yCYAu-sCpoDe1aGcqDJ13w9NOJvD4ac6f18SWlARWkh/exec",
+            4: "https://script.google.com/macros/s/AKfycbwUlfU0Sv7N20kANe05v3l1LF8I2fgGkF0RHpakDfFFcY_rug3lu1ay5OArSsMElmivQg/exec",
+            5: "https://script.google.com/macros/s/AKfycbxtRvCTS_E2VaOqSC3Ay0EUB201PP3GX_KY66CLNk4FHV1ACPvbEcCtXAj5nNgNMxZf/exec"
         };
 
-        let currentTeacher = null;
+        // --- PEMBOLEHUBAH GLOBAL ---
+        let currentUser = null;
         let currentStudents = [];
-        let currentAttendance = {};
+        let viewHistory = ['view-login'];
+        let tempAttendance = {}; // Menyimpan data sementara sebelum hantar
 
-        function showSection(id) {
-            document.querySelectorAll('.container > div, .fixed-bottom-bar').forEach(el => el.classList.add('hidden'));
-            document.getElementById(id).classList.remove('hidden');
-            if(id === 'section-selection') document.getElementById('bar-selection').classList.remove('hidden');
-            if(id === 'section-attendance') document.getElementById('bar-attendance').classList.remove('hidden');
-            if(id === 'section-dashboard') document.getElementById('bar-dashboard').classList.remove('hidden');
+        // --- FUNGSI ASAS ANTARAMUKA ---
+        function switchView(viewId) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+            
+            if(viewId !== viewHistory[viewHistory.length - 1]) {
+                viewHistory.push(viewId);
+            }
+
+            document.getElementById('bottom-nav').style.display = (viewId === 'view-login') ? 'none' : 'flex';
         }
 
-        function login() {
-            let ic = document.getElementById('ic-input').value.trim();
-            if(ic === "72130268") ic = "00072130268";
-            if(ic === "627130838") ic = "000627130838";
-
-            if (teachersData[ic]) {
-                currentTeacher = teachersData[ic];
-                document.getElementById('teacher-name-display').innerText = `Cikgu ${currentTeacher.name}`;
-                let subSelect = document.getElementById('select-subject');
-                subSelect.innerHTML = '<option value="">-- Pilih Kelas --</option>';
-                currentTeacher.subjects.forEach(s => subSelect.innerHTML += `<option value="${s}">${s}</option>`);
-                showSection('section-selection');
-            } else {
-                alert("IC tidak ditemui!");
+        function goBack() {
+            if(viewHistory.length > 1) {
+                viewHistory.pop();
+                let prevView = viewHistory[viewHistory.length - 1];
+                document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+                document.getElementById(prevView).classList.add('active');
+                if(prevView === 'view-login') document.getElementById('bottom-nav').style.display = 'none';
             }
         }
 
-        function getFormFromSubject(subject) {
-            let match = subject.match(/\d/);
-            return match ? match[0] : null;
+        // --- FUNGSI LOG MASUK ---
+        function login() {
+            const idInput = document.getElementById('guru-id').value.trim();
+            if(guruDb[idInput]) {
+                currentUser = { id: idInput, ...guruDb[idInput] };
+                document.getElementById('guru-name-display').innerText = `Cikgu ${currentUser.name}`;
+                
+                let select = document.getElementById('subjek-select');
+                select.innerHTML = '';
+                currentUser.subjek.forEach(sub => {
+                    let opt = document.createElement('option');
+                    opt.value = sub;
+                    opt.innerText = sub;
+                    select.appendChild(opt);
+                });
+                switchView('view-selection');
+            } else {
+                alert("ID tidak dijumpai. Sila cuba lagi.");
+            }
         }
 
-       async function loadStudents() {
-            let subject = document.getElementById('select-subject').value;
-            let session = document.getElementById('select-session').value;
-            let form = getFormFromSubject(subject);
+        // --- FUNGSI EXTRACT TINGKATAN ---
+        function getTingkatanFromSubjek(subjekStr) {
+            let match = subjekStr.match(/\d/);
+            return match ? parseInt(match[0]) : 1;
+        }
 
-            if(!subject || !session) return alert("Sila pilih kelas & sesi.");
-
-            showSection('section-attendance');
+        // --- FUNGSI LOAD PELAJAR DARI CSV ---
+        async function loadStudents() {
+            const subjek = document.getElementById('subjek-select').value;
+            const tingkatan = getTingkatanFromSubjek(subjek);
+            const csvUrl = csvUrls[tingkatan];
+            
+            document.getElementById('att-title').innerText = `${subjek} (Ting. ${tingkatan})`;
+            document.getElementById('loader').style.display = 'block';
             document.getElementById('student-list').innerHTML = '';
-            document.getElementById('loader').classList.remove('hidden');
-            document.getElementById('attendance-title').innerText = `${subject} (Sesi ${session})`;
+            tempAttendance = {}; // Reset attendance map
+            switchView('view-attendance');
 
             try {
-                let res = await fetch(csvLinks[form]);
-                let text = await res.text();
-                let rows = text.split('\n');
+                const response = await fetch(csvUrl);
+                const data = await response.text();
+                
+                // Parse CSV simple
+                const rows = data.split('\n').slice(1); // skip header
                 currentStudents = [];
-                currentAttendance = {};
+                
+                rows.forEach(row => {
+                    // Regex handle comma inside quotes if any
+                    const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(item => item.replace(/"/g, '').trim());
+                    if(cols.length >= 4) {
+                        const nama = cols[0];
+                        const kelas = cols[1];
+                        const jantina = cols[2];
+                        const kumpulanSubjek = cols[3];
 
-                for(let i=1; i<rows.length; i++) {
-                    // Pecahkan data CSV. Mengandaikan: 
-                    // cols[0]=Nama, cols[1]=Kelas, cols[2]=Jantina, cols[3]=Subjek
-                    let cols = rows[i].split(',');
-                    
-                    if(cols.length >= 4 && (subject.includes(cols[3].trim()) || cols[3].trim().includes(subject))) {
-                        currentStudents.push({ 
-                            name: cols[0].trim(), 
-                            className: cols[1].trim(), 
-                            gender: cols[2].trim(), // Tambahan data jantina
-                            id: i 
-                        });
-                        currentAttendance[i] = "";
+                        // Tapis mengikut subjek yg dipilih guru (Kolum D)
+                        if(kumpulanSubjek && kumpulanSubjek.toUpperCase() === subjek.toUpperCase()) {
+                            currentStudents.push({ nama, kelas, jantina, kumpulanSubjek });
+                        }
                     }
-                }
-                renderList();
-            } catch(e) { alert("Ralat muat turun data."); }
-            finally { document.getElementById('loader').classList.add('hidden'); }
+                });
+
+                renderStudentList();
+            } catch (error) {
+                alert("Gagal memuat turun senarai pelajar. Sila pastikan peranti mempunyai sambungan internet.");
+                console.error(error);
+            } finally {
+                document.getElementById('loader').style.display = 'none';
+            }
         }
 
-        function renderList() {
-            let container = document.getElementById('student-list');
-            container.innerHTML = currentStudents.length ? '' : '<p>Tiada pelajar.</p>';
-            currentStudents.forEach((s, idx) => {
-                let div = document.createElement('div');
-                div.className = 'student-item';
-                
-                // Gunakan warna berbeza sikit untuk jantina (Pilihan)
-                let genderColor = s.gender.toLowerCase().startsWith('p') ? '#ff99cc' : '#99ccff'; // Merah jambu untuk Perempuan, Biru untuk Lelaki
+        // --- FUNGSI RENDER SENARAI PELAJAR ---
+        function renderStudentList() {
+            const listDiv = document.getElementById('student-list');
+            if(currentStudents.length === 0) {
+                listDiv.innerHTML = "<p style='text-align:center;'>Tiada pelajar dijumpai untuk subjek ini dalam rekod MASTER.</p>";
+                return;
+            }
 
+            currentStudents.forEach((std, index) => {
+                let div = document.createElement('div');
+                div.className = 'student-row';
+                div.id = `row-${index}`;
+                
                 div.innerHTML = `
-                    <div class="student-name" style="margin-bottom: 2px;">${idx+1}. ${s.name}</div>
-                    <div style="font-size: 0.75rem; color: #aaa; margin-bottom: 10px;">
-                        <span style="background: #333; padding: 2px 6px; border-radius: 4px;">${s.className}</span> 
-                        <span style="background: #333; padding: 2px 6px; border-radius: 4px; color: ${genderColor};">${s.gender}</span>
-                    </div>
-                    <div class="attendance-actions">
-                        <button class="btn-att hadir ${currentAttendance[s.id]==='Hadir'?'selected':''}" onclick="mark(${s.id},'Hadir')">Hadir</button>
-                        <button class="btn-att sebab ${currentAttendance[s.id]==='Tidak Hadir Bersebab'?'selected':''}" onclick="mark(${s.id},'Tidak Hadir Bersebab')">Bersebab</button>
-                        <button class="btn-att tanpa-sebab ${currentAttendance[s.id]==='Tidak Hadir Tanpa Sebab'?'selected':''}" onclick="mark(${s.id},'Tidak Hadir Tanpa Sebab')">T.Sebab</button>
+                    <div class="student-name">${std.nama}</div>
+                    <div class="student-info">${std.kelas} | ${std.jantina}</div>
+                    <div id="status-badge-${index}"></div>
+                    <div class="att-group">
+                        <button class="btn-hadir" tabindex="${index*3 + 3}" onclick="markAttendance(${index}, 'Hadir')">Hadir</button>
+                        <button class="btn-bersebab" tabindex="${index*3 + 4}" onclick="markAttendance(${index}, 'Tidak Hadir Bersebab')">TH Bersebab</button>
+                        <button class="btn-tanpa-sebab" tabindex="${index*3 + 5}" onclick="markAttendance(${index}, 'Tidak Hadir Tanpa Sebab')">TH Tanpa Sebab</button>
                     </div>
                 `;
-                container.appendChild(div);
+                
+                // Feature "Enter" Lompat ke nama seterusnya
+                div.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        jumpToNext(index);
+                    }
+                });
+
+                listDiv.appendChild(div);
             });
         }
 
-        function mark(id, status) {
-            currentAttendance[id] = status;
-            renderList();
+        function markAttendance(index, status) {
+            const std = currentStudents[index];
+            tempAttendance[std.nama] = status;
+            
+            let color = status === 'Hadir' ? '#4CAF50' : (status === 'Tidak Hadir Bersebab' ? '#FFC107' : '#F44336');
+            let textColor = status === 'Tidak Hadir Bersebab' ? 'black' : 'white';
+            
+            document.getElementById(`status-badge-${index}`).innerHTML = `<span class="status-badge" style="background:${color}; color:${textColor}">${status}</span>`;
+            
+            // Lompat automatik ke pelajar seterusnya untuk mobile friendly
+            jumpToNext(index);
         }
 
-        async function semakRekodMaster() {
-            let subject = document.getElementById('select-subject').value;
-            let form = getFormFromSubject(subject);
-            if(!subject) return alert("Sila pilih subjek dahulu.");
-
-            alert("Menarik data terus dari Google Sheet Master. Sila tunggu...");
-            showSection('section-dashboard');
-            document.getElementById('dashboard-list').innerHTML = '<div class="loader">Menghubungi Master Sheet...</div>';
-
-            try {
-                // Menghantar permintaan ke App Script untuk mendapatkan data live
-                let res = await fetch(`${appScriptLinks[form]}?action=get_master_history&subject=${encodeURIComponent(subject)}`);
-                let data = await res.json();
-                
-                let container = document.getElementById('dashboard-list');
-                container.innerHTML = '';
-
-                if(!data || data.length === 0) {
-                    container.innerHTML = '<p style="text-align:center;">Tiada rekod ditemui di Master Sheet untuk subjek ini.</p>';
-                    return;
+        function jumpToNext(currentIndex) {
+            let nextIndex = currentIndex + 1;
+            if(document.getElementById(`row-${nextIndex}`)) {
+                // Focus ke butang hadir pelajar seterusnya supaya mudah ditekan enter/keyboard
+                let nextBtn = document.getElementById(`row-${nextIndex}`).querySelector('.btn-hadir');
+                if(nextBtn) {
+                    nextBtn.focus();
+                    nextBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
-
-                data.forEach(rec => {
-                    let div = document.createElement('div');
-                    div.className = 'record-item';
-                    div.innerHTML = `
-                        <div style="font-weight:bold; color:var(--swk-yellow);">Sesi ${rec.session}</div>
-                        <div style="font-size:0.8rem; margin-bottom:10px;">Dikemaskini: ${rec.timestamp}</div>
-                        <button class="btn btn-info" style="padding:5px; font-size:0.7rem;" onclick="this.nextElementSibling.classList.toggle('hidden')">Lihat Senarai</button>
-                        <div class="student-detail-list hidden">
-                            ${rec.details.map(d => `<div class="detail-row"><span>${d.name}</span><b>${d.status}</b></div>`).join('')}
-                        </div>
-                    `;
-                    container.appendChild(div);
-                });
-            } catch(e) {
-                document.getElementById('dashboard-list').innerHTML = '<p style="color:red;">Ralat: Pastikan App Script anda telah menyokong fungsi "get_master_history".</p>';
             }
+        }
+
+        // --- FUNGSI SIMPAN (LOCAL) DAN HANTAR (GAS) ---
+        function getKolumBerdasarkanSesi(sesiNum) {
+            // Sesi 1 = E, Sesi 2 = F... (Char Code: 69 untuk E)
+            return String.fromCharCode(68 + parseInt(sesiNum)); 
         }
 
         async function simpanDanHantar() {
-            let subject = document.getElementById('select-subject').value;
-            let session = document.getElementById('select-session').value;
-            let form = getFormFromSubject(subject);
-            
-            let dataToSent = currentStudents.map(s => ({
-                name: s.name,
-                className: s.className,
-                status: currentAttendance[s.id] || "Tiada Rekod"
-            }));
+            if(Object.keys(tempAttendance).length === 0) {
+                alert("Sila tanda kehadiran sekurang-kurangnya seorang pelajar sebelum hantar.");
+                return;
+            }
 
-            alert("Menghantar ke Google Sheet...");
+            const sesi = document.getElementById('sesi-select').value;
+            const subjek = document.getElementById('subjek-select').value;
+            const tingkatan = getTingkatanFromSubjek(subjek);
+            const tarikh = new Date().toLocaleDateString('ms-MY');
+            const dateID = new Date().getTime(); // Untuk ID Unik
+
+            // 1. Simpan ke LocalStorage
+            let localData = JSON.parse(localStorage.getItem('kehadiran_seep')) || [];
+            
+            let payloadGAS = [];
+
+            for(let nama in tempAttendance) {
+                let status = tempAttendance[nama];
+                
+                // Bina struktur local
+                let rekod = {
+                    id: `${dateID}-${nama.replace(/\s/g, '')}`,
+                    nama: nama,
+                    kelasSubjek: subjek,
+                    tingkatan: tingkatan,
+                    sesi: sesi,
+                    kolum: getKolumBerdasarkanSesi(sesi),
+                    tarikh: tarikh,
+                    status: status
+                };
+                localData.push(rekod);
+
+                // Bina struktur GAS (Boleh disesuaikan mengikut Apps Script cikgu)
+                payloadGAS.push({
+                    action: 'update',
+                    nama: nama,
+                    sesi: sesi,
+                    kolum: rekod.kolum,
+                    status: status,
+                    subjek: subjek
+                });
+            }
+
+            localStorage.setItem('kehadiran_seep', JSON.stringify(localData));
+            
+            // 2. Hantar ke Google Apps Script (AJAX POST)
+            const gasUrl = gasUrls[tingkatan];
+            
             try {
-                await fetch(appScriptLinks[form], {
-                    method: 'POST', mode: 'no-cors',
-                    body: JSON.stringify({ action: 'update_attendance', session, subject, records: dataToSent })
+                // Hantar secara berkelompok atau satu persatu bergantung kpd setup GAS.
+                // Menggunakan JSON stringify. GAS perlu ada doPost(e) JSON.parse(e.postData.contents)
+                await fetch(gasUrl, {
+                    method: 'POST',
+                    mode: 'no-cors', // Penting utk elak CORS error di browser walau tak dapat baca response
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payloadGAS)
                 });
                 
-                // Simpan local juga sebagai backup
-                let localRecords = JSON.parse(localStorage.getItem('seep_records') || '[]');
-                localRecords.push({ id: Date.now(), teacher: currentTeacher.name, subject, session, date: new Date().toLocaleString(), data: dataToSent });
-                localStorage.setItem('seep_records', JSON.stringify(localRecords));
-
-                alert("BERJAYA DIHANTAR!");
-                showSection('section-selection');
-            } catch(e) { alert("Gagal hantar ke server, tetapi disimpan dalam peranti."); }
+                alert(`Data Kehadiran Sesi ${sesi} telah berjaya disimpan dan dihantar!`);
+                tempAttendance = {}; // Clear pending
+                showDashboard(); // Bawa ke dashboard
+            } catch (err) {
+                alert("Data disimpan secara LOCAL, tetapi ralat berlaku ketika menghantar ke Google Sheet. " + err);
+                showDashboard();
+            }
         }
 
-        function bukaDashboard() {
-            showSection('section-dashboard');
-            let container = document.getElementById('dashboard-list');
-            container.innerHTML = '';
-            let records = JSON.parse(localStorage.getItem('seep_records') || '[]').filter(r => r.teacher === currentTeacher.name);
+        // --- FUNGSI DASHBOARD (SEMAK, KEMASKINI, HAPUS) ---
+        function showDashboard() {
+            switchView('view-dashboard');
+            const recordList = document.getElementById('record-list');
+            let localData = JSON.parse(localStorage.getItem('kehadiran_seep')) || [];
+
+            if(localData.length === 0) {
+                recordList.innerHTML = "Tiada rekod disimpan dalam peranti ini.";
+                return;
+            }
+
+            // Tapis hanya rekod untuk cikgu yang sedang login (berdasarkan subjek)
+            let myRecords = localData.filter(r => currentUser.subjek.includes(r.kelasSubjek));
             
-            records.reverse().forEach(r => {
-                container.innerHTML += `
-                    <div class="record-item">
-                        <b>${r.subject} - Sesi ${r.session}</b><br><small>${r.date}</small>
-                        <button class="btn btn-info" style="margin-top:10px; padding:5px;" onclick="this.nextElementSibling.classList.toggle('hidden')">Lihat Senarai</button>
-                        <div class="student-detail-list hidden">
-                            ${r.data.map(d => `<div class="detail-row"><span>${d.name}</span><b>${d.status}</b></div>`).join('')}
-                        </div>
-                    </div>`;
+            // Sort by latest
+            myRecords.reverse();
+
+            if(myRecords.length === 0) {
+                recordList.innerHTML = "Tiada rekod anda dijumpai.";
+                return;
+            }
+
+            recordList.innerHTML = '';
+            myRecords.forEach((r, idx) => {
+                let div = document.createElement('div');
+                div.className = 'record-card';
+                div.innerHTML = `
+                    <strong>${r.nama}</strong><br>
+                    <small>${r.kelasSubjek} | Sesi ${r.sesi} (${r.tarikh})</small><br>
+                    Status Semasa: <b>${r.status}</b>
+                    <div class="record-actions">
+                        <select id="update-sel-${r.id}" style="width:auto; flex:1; margin:0; padding:5px;">
+                            <option value="Hadir" ${r.status==='Hadir'?'selected':''}>Hadir</option>
+                            <option value="Tidak Hadir Bersebab" ${r.status==='Tidak Hadir Bersebab'?'selected':''}>TH Bersebab</option>
+                            <option value="Tidak Hadir Tanpa Sebab" ${r.status==='Tidak Hadir Tanpa Sebab'?'selected':''}>TH Tanpa Sebab</option>
+                        </select>
+                        <button class="btn-small btn-update" onclick="kemaskiniRekod('${r.id}')">Kemaskini</button>
+                        <button class="btn-small btn-delete" onclick="hapusRekod('${r.id}')">Hapus</button>
+                    </div>
+                `;
+                recordList.appendChild(div);
             });
         }
 
-        function logout() { currentTeacher = null; showSection('section-login'); }
+        async function kemaskiniRekod(id) {
+            let localData = JSON.parse(localStorage.getItem('kehadiran_seep')) || [];
+            let rIndex = localData.findIndex(r => r.id === id);
+            
+            if(rIndex > -1) {
+                let newStatus = document.getElementById(`update-sel-${id}`).value;
+                localData[rIndex].status = newStatus;
+                let rekod = localData[rIndex];
+                
+                localStorage.setItem('kehadiran_seep', JSON.stringify(localData));
+                
+                // Hantar update ke GAS
+                try {
+                    await fetch(gasUrls[rekod.tingkatan], {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify([{ action: 'update', nama: rekod.nama, sesi: rekod.sesi, kolum: rekod.kolum, status: newStatus, subjek: rekod.kelasSubjek }])
+                    });
+                    alert("Rekod berjaya dikemaskini (Local & Master)!");
+                    showDashboard();
+                } catch(e) {
+                    alert("Dikemaskini di Local, tetapi ralat berhubung dengan Master.");
+                }
+            }
+        }
+
+        async function hapusRekod(id) {
+            if(!confirm("Anda pasti mahu hapus rekod ini?")) return;
+
+            let localData = JSON.parse(localStorage.getItem('kehadiran_seep')) || [];
+            let rekod = localData.find(r => r.id === id);
+            
+            if(rekod) {
+                // Buang dari local
+                localData = localData.filter(r => r.id !== id);
+                localStorage.setItem('kehadiran_seep', JSON.stringify(localData));
+                
+                // Hantar command hapus ke GAS (kosongkan status)
+                try {
+                    await fetch(gasUrls[rekod.tingkatan], {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify([{ action: 'delete', nama: rekod.nama, sesi: rekod.sesi, kolum: rekod.kolum, status: "", subjek: rekod.kelasSubjek }])
+                    });
+                    alert("Rekod berjaya dihapus!");
+                    showDashboard();
+                } catch(e) {
+                    alert("Dihapus di Local, tetapi ralat berhubung dengan Master.");
+                }
+            }
+        }
+
+        // --- FUNGSI KELUAR ---
+        function logout() {
+            if(confirm("Adakah anda pasti untuk keluar? Data dalam 'Semak Rekod' akan kekal.")) {
+                currentUser = null;
+                currentStudents = [];
+                tempAttendance = {};
+                document.getElementById('guru-id').value = '';
+                viewHistory = ['view-login'];
+                switchView('view-login');
+            }
+        }
+
     </script>
 </body>
 </html>
