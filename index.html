@@ -24,11 +24,11 @@
             overflow-x: hidden;
         }
 
-        /* Header Section */
+        /* Header Section - Diperbaharui dengan URL baharu dan saiz jelas */
         .main-header {
             width: 100%;
-            height: 220px;
-            background: url('https://i.ibb.co/VpC03Qkn/IMG-8705.png') no-repeat center center;
+            height: 250px;
+            background: url('https://i.ibb.co/k6mJ2r8F/header-website-seep-latest.jpg') no-repeat center center;
             background-size: cover;
             position: relative;
             display: flex;
@@ -39,38 +39,41 @@
         }
 
         .header-title {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.65);
+            padding: 10px 25px;
             text-align: center;
-            backdrop-filter: blur(5px);
-            border-radius: 10px;
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 20px;
         }
 
         .header-title h1 {
             margin: 0;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--swk-yellow);
             letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
         .logo-container {
-            width: 100px;
-            height: 100px;
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border: 2px solid var(--glass-border);
+            width: 110px;
+            height: 110px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255,255,255,0.4);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: -50px;
+            margin-top: -55px;
             position: relative;
             z-index: 10;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.6);
         }
 
         .logo-container img {
-            width: 70px;
+            width: 80px;
             height: auto;
         }
 
@@ -98,27 +101,38 @@
             margin: 10px 0;
             border-radius: 12px;
             border: 1px solid var(--glass-border);
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.4);
             color: white;
             font-size: 16px;
             box-sizing: border-box;
+            outline: none;
+        }
+        
+        input:focus, select:focus {
+            border-color: var(--swk-yellow);
         }
 
-        /* Sarawak Button Style */
+        /* Butang Bendera Sarawak Glassy */
         .btn-login {
             width: 100%;
-            padding: 15px;
+            padding: 16px;
             border-radius: 12px;
             border: none;
-            background: linear-gradient(45deg, var(--swk-red), var(--swk-yellow), var(--swk-black));
-            background-size: 200% 200%;
+            background: linear-gradient(135deg, var(--swk-red) 30%, var(--swk-yellow) 60%, var(--swk-black) 100%);
             color: white;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 4px 15px rgba(227, 27, 35, 0.4);
             transition: 0.3s;
+        }
+        
+        .btn-login:active {
+            transform: scale(0.98);
         }
 
         /* Attendance Buttons */
@@ -130,32 +144,37 @@
         }
 
         .att-btn {
-            padding: 12px 5px;
-            border: none;
+            padding: 12px 2px;
+            border: 1px solid transparent;
             border-radius: 8px;
             font-size: 11px;
             font-weight: 600;
             color: white;
             cursor: pointer;
-            transition: 0.2s;
-            opacity: 0.6;
+            transition: all 0.2s;
+            opacity: 0.5;
         }
 
-        .att-btn.active { opacity: 1; transform: scale(1.05); border: 2px solid white; }
+        .att-btn.active { 
+            opacity: 1; 
+            transform: scale(1.03); 
+            border: 2px solid white; 
+            box-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+        
         .bg-green { background-color: #28a745; }
         .bg-yellow { background-color: #ffc107; color: black; }
         .bg-red { background-color: #dc3545; }
 
         /* Student List */
         .student-row {
-            padding: 15px;
+            padding: 15px 0;
             border-bottom: 1px solid var(--glass-border);
         }
 
         .student-row:last-child { border: none; }
-        
-        .student-name { font-weight: 600; font-size: 14px; margin-bottom: 5px; display: block; }
-        .student-meta { font-size: 11px; opacity: 0.7; }
+        .student-name { font-weight: 600; font-size: 14px; margin-bottom: 5px; display: block; color: var(--swk-yellow); }
+        .student-meta { font-size: 11px; opacity: 0.8; }
 
         /* Navigation Bottom Bar */
         .bottom-nav {
@@ -163,13 +182,14 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(15, 18, 22, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 18, 22, 0.98);
+            backdrop-filter: blur(15px);
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            padding: 15px 5px;
+            padding: 12px 5px;
             border-top: 2px solid var(--swk-red);
             z-index: 1000;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
         }
 
         .nav-item {
@@ -180,40 +200,77 @@
             border: none;
             color: white;
             font-size: 10px;
+            font-weight: 600;
             cursor: pointer;
+            transition: color 0.2s;
         }
 
-        .nav-item svg { width: 20px; height: 20px; margin-bottom: 5px; fill: currentColor; }
-        .nav-item:active { color: var(--swk-yellow); }
+        .nav-item svg { width: 22px; height: 22px; margin-bottom: 4px; fill: currentColor; }
+        .nav-item:active, .nav-item:focus { color: var(--swk-yellow); outline: none; }
 
         /* Dashboard */
         .dashboard-item {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.08);
             padding: 15px;
             border-radius: 12px;
-            margin-bottom: 10px;
-            font-size: 12px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .record-student-list {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(255,255,255,0.2);
+        }
+
+        .record-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 11px;
         }
 
         .status-badge {
-            padding: 2px 8px;
-            border-radius: 4px;
+            padding: 4px 8px;
+            border-radius: 6px;
             font-size: 10px;
-            margin-left: 5px;
+            font-weight: 600;
         }
+
+        .dash-btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .dash-btn {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: 600;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        .btn-edit { background: #007bff; }
+        .btn-delete { background: #dc3545; }
 
         footer {
             text-align: center;
-            font-size: 10px;
-            opacity: 0.5;
+            font-size: 11px;
+            color: #888;
             padding: 20px;
+            margin-top: 20px;
         }
 
-        .hidden { display: none; }
+        .hidden { display: none !important; }
 
         /* Animations */
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .view { animation: fadeIn 0.4s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .view { animation: fadeIn 0.4s ease-out; }
 
     </style>
 </head>
@@ -222,7 +279,7 @@
     <header class="main-header">
         <div class="header-title">
             <h1>PORTAL KEHADIRAN SEEP</h1>
-            <div style="color: white; font-size: 0.8rem;">TAHUN 2026</div>
+            <div style="color: white; font-size: 0.9rem; font-weight: 300;">TAHUN 2026</div>
         </div>
     </header>
 
@@ -234,53 +291,49 @@
 
     <div class="container">
         <div id="view-login" class="view glass-card">
-            <h2 style="text-align: center; margin-top: 0;">Log Masuk Guru</h2>
-            <p style="text-align: center; font-size: 12px; opacity: 0.8;">Sila masukkan No. Kad Pengenalan anda</p>
-            <input type="number" id="guru-ic" placeholder="Contoh: 80010113XXXX">
+            <h2 style="text-align: center; margin-top: 0; color: var(--swk-yellow);">Log Masuk Guru</h2>
+            <p style="text-align: center; font-size: 12px; opacity: 0.8; margin-bottom: 20px;">Sila masukkan No. Kad Pengenalan anda</p>
+            <input type="number" id="guru-ic" placeholder="Cth: 80010113XXXX" inputmode="numeric">
             <button class="btn-login" onclick="loginGuru()">Log Masuk</button>
         </div>
 
         <div id="view-selection" class="view hidden">
             <div class="glass-card">
-                <h3 id="display-guru-name">Selamat Datang</h3>
-                <label>Pilih Subjek/Kumpulan</label>
+                <h3 id="display-guru-name" style="color: var(--swk-yellow); margin-top: 0;">Selamat Datang</h3>
+                
+                <label style="font-size: 13px; opacity: 0.9;">Pilih Subjek/Kumpulan</label>
                 <select id="select-subjek"></select>
 
-                <label>Pilih Sesi</label>
+                <label style="font-size: 13px; opacity: 0.9; display: block; margin-top: 10px;">Pilih Sesi</label>
                 <select id="select-sesi">
-                    <option value="1">SESI 1</option>
-                    <option value="2">SESI 2</option>
-                    <option value="3">SESI 3</option>
-                    <option value="4">SESI 4</option>
-                    <option value="5">SESI 5</option>
-                    <option value="6">SESI 6</option>
-                    <option value="7">SESI 7</option>
-                    <option value="8">SESI 8</option>
-                    <option value="9">SESI 9</option>
-                    <option value="10">SESI 10</option>
-                    <option value="11">SESI 11</option>
-                    <option value="12">SESI 12</option>
-                    <option value="13">SESI 13</option>
-                    <option value="14">SESI 14</option>
-                    <option value="15">SESI 15</option>
-                    <option value="16">SESI 16</option>
-                    <option value="17">SESI 17</option>
-                    <option value="18">SESI 18</option>
+                    <option value="1">SESI 1</option><option value="2">SESI 2</option>
+                    <option value="3">SESI 3</option><option value="4">SESI 4</option>
+                    <option value="5">SESI 5</option><option value="6">SESI 6</option>
+                    <option value="7">SESI 7</option><option value="8">SESI 8</option>
+                    <option value="9">SESI 9</option><option value="10">SESI 10</option>
+                    <option value="11">SESI 11</option><option value="12">SESI 12</option>
+                    <option value="13">SESI 13</option><option value="14">SESI 14</option>
+                    <option value="15">SESI 15</option><option value="16">SESI 16</option>
+                    <option value="17">SESI 17</option><option value="18">SESI 18</option>
                 </select>
-                <button class="btn-login" onclick="loadPelajar()">Buka Senarai Kehadiran</button>
+                
+                <button class="btn-login" style="margin-top: 20px;" onclick="loadPelajar()">Buka Senarai Kehadiran</button>
             </div>
         </div>
 
         <div id="view-attendance" class="view hidden">
             <div class="glass-card">
-                <h3 id="display-info-kelas" style="margin-top: 0; font-size: 14px; color: var(--swk-yellow);"></h3>
+                <div style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <h3 id="display-info-kelas" style="margin: 0; font-size: 16px; color: var(--swk-yellow);"></h3>
+                </div>
                 <div id="student-list-container">
                     </div>
             </div>
         </div>
 
         <div id="view-dashboard" class="view hidden">
-            <h2 style="text-align: center;">Semak Rekod</h2>
+            <h2 style="text-align: center; color: var(--swk-yellow);">Semakan Rekod</h2>
+            <p style="text-align: center; font-size: 11px; opacity: 0.7; margin-top:-10px;">Data dipaparkan dari pangkalan storan tempatan (Local Store)</p>
             <div id="dashboard-list"></div>
         </div>
 
@@ -295,12 +348,12 @@
             KEMBALI
         </button>
         <button class="nav-item" onclick="simpanHantar()">
-            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-            SIMPAN & HANTAR
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            SIMPAN
         </button>
         <button class="nav-item" onclick="viewDashboard()">
             <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-            SEMAK REKOD
+            SEMAK
         </button>
         <button class="nav-item" onclick="logout()">
             <svg viewBox="0 0 24 24"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
@@ -396,6 +449,7 @@
             } else {
                 document.getElementById('bottom-nav').classList.remove('hidden');
             }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function loginGuru() {
@@ -415,9 +469,17 @@
 
                 showView('view-selection');
             } else {
-                alert("ID Guru tidak dijumpai!");
+                alert("ID Guru tidak dijumpai. Sila pastikan Nombor Kad Pengenalan adalah betul tanpa tanda sengkang (-).");
             }
         }
+
+        // Feature "Enter" untuk login
+        document.getElementById("guru-ic").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                loginGuru();
+            }
+        });
 
         async function loadPelajar() {
             activeSubjek = document.getElementById('select-subjek').value;
@@ -441,27 +503,40 @@
                 const filtered = rows.filter(row => row[3] && row[3].trim().toUpperCase() === activeSubjek.toUpperCase());
 
                 if (filtered.length === 0) {
-                    container.innerHTML = "<p style='text-align:center'>Tiada pelajar dijumpai untuk kumpulan ini.</p>";
+                    container.innerHTML = "<p style='text-align:center; color:#ffcc00;'>Tiada pelajar dijumpai untuk kelas dan subjek ini di dalam helaian MASTER.</p>";
+                    showView('view-attendance');
                     return;
                 }
 
                 container.innerHTML = "";
-                attendanceRecord = {};
+                
+                // Preserve existing attendance if editing
+                const existingRecordID = localStorage.getItem('editing_record_id');
+                if(existingRecordID) {
+                    const localData = JSON.parse(localStorage.getItem('seep_records') || "[]");
+                    const item = localData.find(d => d.id == existingRecordID);
+                    if(item) attendanceRecord = item.rekod;
+                } else {
+                    attendanceRecord = {};
+                }
 
                 filtered.forEach((p, index) => {
                     const nama = p[0].trim();
                     const kelas = p[1].trim();
                     const jantina = p[2].trim();
                     
+                    const statusSemasa = attendanceRecord[nama] || '';
+                    
                     const rowDiv = document.createElement('div');
                     rowDiv.className = 'student-row';
+                    rowDiv.id = `row-${index}`;
                     rowDiv.innerHTML = `
-                        <span class="student-name">${nama}</span>
-                        <span class="student-meta">${kelas} | ${jantina}</span>
+                        <span class="student-name">${index + 1}. ${nama}</span>
+                        <span class="student-meta">Kelas: ${kelas} | Jantina: ${jantina}</span>
                         <div class="att-btn-group" id="group-${index}">
-                            <button class="att-btn bg-green" onclick="markAttendance(${index}, '${nama}', 'Hadir')">HADIR</button>
-                            <button class="att-btn bg-yellow" onclick="markAttendance(${index}, '${nama}', 'TH Bersebab')">BERSEBAB</button>
-                            <button class="att-btn bg-red" onclick="markAttendance(${index}, '${nama}', 'TH Tanpa Sebab')">TANPA SEBAB</button>
+                            <button class="att-btn bg-green ${statusSemasa === 'Hadir' ? 'active' : ''}" onclick="markAttendance(${index}, '${nama.replace(/'/g, "\\'")}', 'Hadir')">HADIR</button>
+                            <button class="att-btn bg-yellow ${statusSemasa === 'TH Bersebab' ? 'active' : ''}" onclick="markAttendance(${index}, '${nama.replace(/'/g, "\\'")}', 'TH Bersebab')">BERSEBAB</button>
+                            <button class="att-btn bg-red ${statusSemasa === 'TH Tanpa Sebab' ? 'active' : ''}" onclick="markAttendance(${index}, '${nama.replace(/'/g, "\\'")}', 'TH Tanpa Sebab')">TANPA SEBAB</button>
                         </div>
                     `;
                     container.appendChild(rowDiv);
@@ -470,7 +545,7 @@
                 showView('view-attendance');
 
             } catch (err) {
-                alert("Gagal memuatkan data pelajar: " + err);
+                alert("Gagal memuatkan data pelajar dari pangkalan data: " + err);
             }
         }
 
@@ -484,23 +559,34 @@
             const selectedBtn = Array.from(btnGroup.querySelectorAll('.att-btn')).find(b => b.innerText.includes(status.toUpperCase().replace('TH ', '')));
             if(selectedBtn) selectedBtn.classList.add('active');
 
-            // Auto-focus logic (Simulasi Enter)
-            const nextGroup = document.getElementById(`group-${idx + 1}`);
-            if (nextGroup) {
-                nextGroup.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Auto-focus / Lompat ke pelajar seterusnya (meniru fungsi Enter)
+            const nextRow = document.getElementById(`row-${idx + 1}`);
+            if (nextRow) {
+                // Beri sedikit delay untuk nampak animasi button dtekan sebelum scroll
+                setTimeout(() => {
+                    nextRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 150);
             }
         }
 
         function simpanHantar() {
-            const listPelajar = Object.keys(attendanceRecord);
-            if (listPelajar.length === 0) {
-                alert("Sila tandakan sekurang-kurangnya satu kehadiran.");
+            if (document.getElementById('view-attendance').classList.contains('hidden')) {
+                alert("Sila buka senarai kehadiran terlebih dahulu.");
                 return;
             }
 
-            const tarikh = new Date().toLocaleDateString('ms-MY');
+            const listPelajar = Object.keys(attendanceRecord);
+            if (listPelajar.length === 0) {
+                alert("Sila tandakan sekurang-kurangnya satu kehadiran pelajar sebelum menyimpan.");
+                return;
+            }
+
+            const tarikh = new Date().toLocaleDateString('ms-MY') + " " + new Date().toLocaleTimeString('ms-MY', { hour: '2-digit', minute: '2-digit' });
+            
+            // Semak adakah kita sedang mengemaskini (edit) rekod lama
+            const editingID = localStorage.getItem('editing_record_id');
             const dataUntukSimpan = {
-                id: Date.now(),
+                id: editingID ? parseInt(editingID) : Date.now(),
                 guru: currentGuru.nama,
                 subjek: activeSubjek,
                 sesi: activeSesi,
@@ -511,21 +597,25 @@
 
             // 1. Simpan ke LocalStorage
             let localData = JSON.parse(localStorage.getItem('seep_records') || "[]");
+            if(editingID) {
+                localData = localData.filter(d => d.id != editingID); // Buang yang lama, ganti yang baru
+                localStorage.removeItem('editing_record_id');
+            }
             localData.push(dataUntukSimpan);
             localStorage.setItem('seep_records', JSON.stringify(localData));
 
-            // 2. Hantar ke Google Sheet
+            // 2. Hantar ke Google Sheet MASTER
             const url = gasLinks[currentTingkatan];
             const kolum = sesiKolum[activeSesi];
 
-            alert("Menghantar rekod ke pangkalan data Master...");
+            alert("Memproses simpanan ke storan tempatan dan menghantar ke Google Sheet...");
 
-            // Iterasi untuk hantar setiap pelajar (Bergantung pada struktur GAS anda)
-            // Di sini kita hantar sebagai batch atau satu-satu
+            // POST ke GAS
             Promise.all(listPelajar.map(nama => {
                 return fetch(url, {
                     method: 'POST',
                     mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({
                         'nama': nama,
                         'status': attendanceRecord[nama],
@@ -534,9 +624,12 @@
                     })
                 });
             })).then(() => {
-                alert("Berjaya dihantar ke Google Sheets!");
+                alert("Berjaya disimpan dan direkodkan ke Google Sheet!");
                 viewDashboard();
-            }).catch(e => alert("Ralat penghantaran: " + e));
+            }).catch(e => {
+                alert("Terdapat ralat semasa menghantar ke server, tetapi data telah disimpan di dalam telefon anda.");
+                viewDashboard();
+            });
         }
 
         function viewDashboard() {
@@ -544,21 +637,39 @@
             const list = document.getElementById('dashboard-list');
             const localData = JSON.parse(localStorage.getItem('seep_records') || "[]");
 
-            if (localData.length === 0) {
-                list.innerHTML = "<p style='text-align:center'>Tiada rekod disimpan.</p>";
+            // Hanya tunjuk rekod guru yang sedang login
+            const rekodGuru = localData.filter(d => d.guru === currentGuru.nama);
+
+            if (rekodGuru.length === 0) {
+                list.innerHTML = "<div class='glass-card' style='text-align:center;'>Tiada rekod kehadiran dijumpai untuk anda di dalam storan ini.</div>";
                 return;
             }
 
             list.innerHTML = "";
-            localData.sort((a,b) => b.id - a.id).forEach(item => {
+            rekodGuru.sort((a,b) => b.id - a.id).forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'dashboard-item';
+                
+                // Bina jadual pelajar untuk rekod ini
+                let senaraiPelajarHTML = `<div class="record-student-list">`;
+                for (const [nama, status] of Object.entries(item.rekod)) {
+                    let badgeClass = status === 'Hadir' ? 'bg-green' : status === 'TH Bersebab' ? 'bg-yellow' : 'bg-red';
+                    senaraiPelajarHTML += `
+                        <div class="record-row">
+                            <span style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-right:10px;">${nama}</span>
+                            <span class="status-badge ${badgeClass}">${status}</span>
+                        </div>
+                    `;
+                }
+                senaraiPelajarHTML += `</div>`;
+
                 div.innerHTML = `
-                    <strong>${item.subjek} - Sesi ${item.sesi}</strong><br>
-                    Tarikh: ${item.tarikh}<br>
-                    <div style="margin-top:10px;">
-                        <button onclick="hapusRekod(${item.id})" style="background:red; color:white; border:none; padding:5px 10px; border-radius:5px; font-size:10px;">Hapus</button>
-                        <button onclick="editRekod(${item.id})" style="background:blue; color:white; border:none; padding:5px 10px; border-radius:5px; font-size:10px; margin-left:5px;">Kemaskini</button>
+                    <div style="font-weight: 600; font-size: 14px; color: var(--swk-yellow);">${item.subjek}</div>
+                    <div style="margin-bottom: 5px;">Sesi: <span style="font-weight:bold;">${item.sesi}</span> | Tarikh: ${item.tarikh}</div>
+                    ${senaraiPelajarHTML}
+                    <div class="dash-btn-group">
+                        <button class="dash-btn btn-delete" onclick="hapusRekod(${item.id})">HAPUS</button>
+                        <button class="dash-btn btn-edit" onclick="editRekod(${item.id})">KEMASKINI</button>
                     </div>
                 `;
                 list.appendChild(div);
@@ -566,13 +677,13 @@
         }
 
         function hapusRekod(id) {
-            if (!confirm("Padam rekod ini dari local dan pangkalan data?")) return;
+            if (!confirm("Adakah anda pasti mahu memadam rekod ini dari storan tempatan dan di pangkalan data Google Sheet MASTER?")) return;
             
             let localData = JSON.parse(localStorage.getItem('seep_records') || "[]");
             const item = localData.find(d => d.id === id);
             
             if (item) {
-                // Hantar request 'Hapus' ke GAS (mengosongkan data)
+                // Hantar request 'Hapus' ke GAS dengan menghantar string kosong
                 const url = gasLinks[item.tingkatan];
                 const kolum = sesiKolum[item.sesi];
                 
@@ -580,9 +691,10 @@
                     fetch(url, {
                         method: 'POST',
                         mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         body: new URLSearchParams({
                             'nama': nama,
-                            'status': '', // Kosongkan
+                            'status': '', 
                             'kolum': kolum,
                             'subjek': item.subjek
                         })
@@ -593,24 +705,31 @@
             localData = localData.filter(d => d.id !== id);
             localStorage.setItem('seep_records', JSON.stringify(localData));
             viewDashboard();
+            alert("Rekod berjaya dipadam!");
         }
 
         function editRekod(id) {
             const localData = JSON.parse(localStorage.getItem('seep_records') || "[]");
             const item = localData.find(d => d.id === id);
             if (item) {
+                // Set the selection fields to match the record
                 activeSubjek = item.subjek;
                 activeSesi = item.sesi;
                 currentTingkatan = item.tingkatan;
-                loadPelajar().then(() => {
-                    // Pre-fill attendance
-                    attendanceRecord = item.rekod;
-                    // (Logik tambahan untuk setkan class .active pada butang)
-                });
+                
+                document.getElementById('select-subjek').value = activeSubjek;
+                document.getElementById('select-sesi').value = activeSesi;
+                
+                // Set special flag in localstorage so saving overwrites this entry
+                localStorage.setItem('editing_record_id', id);
+                
+                loadPelajar();
             }
         }
 
         function goBack() {
+            localStorage.removeItem('editing_record_id'); // Clear flag just in case
+            
             if (!document.getElementById('view-attendance').classList.contains('hidden')) {
                 showView('view-selection');
             } else if (!document.getElementById('view-dashboard').classList.contains('hidden')) {
@@ -621,19 +740,14 @@
         }
 
         function logout() {
-            if(confirm("Adakah anda pasti mahu keluar?")) {
+            if(confirm("Adakah anda pasti mahu keluar? Data yang disimpan di Local Store tidak akan hilang.")) {
                 currentGuru = null;
+                attendanceRecord = {};
+                document.getElementById('guru-ic').value = '';
+                localStorage.removeItem('editing_record_id');
                 showView('view-login');
             }
         }
-
-        // Support mobile keyboard "Enter"
-        document.addEventListener('keydown', function(e) {
-            if(e.key === "Enter") {
-                // Enter biasanya digunakan untuk lompat fokus pada mobile
-                // Logic markAttendance sudah menyertakan auto-scroll
-            }
-        });
 
     </script>
 </body>
